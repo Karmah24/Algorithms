@@ -11,18 +11,18 @@ void insertAtBottom(stack<int>& s, int x) {
         s.push(a);
     }
 }
-void sort(stack<int>& s, int subMin = INT_MAX) {
+void reverse(stack<int>& s) {
     
     if (s.size() == 0) return;
     int x = s.top();
     s.pop();
-    sort(s, min(subMin, x));
+    reverse(s);
     insertAtBottom(s, x);
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
 
     stack<int> s;
     int n;
@@ -32,7 +32,7 @@ int main() {
         cin >> k;
         s.push(k);
     }
-    sort(s);
+    reverse(s);
     while (!s.empty()) {
         cout << s.top() << " ";
         s.pop();

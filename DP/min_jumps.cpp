@@ -7,22 +7,6 @@ typedef vector<int>		vi;
 
 class Solution {
 public:
-    // int jump(vector<int>& nums) {
-    //     int n = nums.size();
-    //     vi res(n);
-    //     fori (i, n) res[i] = INT_MAX;
-    //     res[n - 1] = 0;
-    //     for (int i = n - 2; i >= 0; i--) {
-    //         if (n - i - 1 <= nums[i]) res[i] = 1;
-    //         else {
-    //             for (int j = i + 1; j <= i + nums[i]; j++) {
-    //                 if (res[j] != INT_MAX)
-    //                     res[i] = min(res[i], res[j] + 1);
-    //             }
-    //         }
-    //     }
-    //     return res[0];
-    // }
     int jump(vector<int>& nums) {
 
         if (nums.size() == 1) return 0;

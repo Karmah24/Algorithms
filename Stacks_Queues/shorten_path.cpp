@@ -8,6 +8,7 @@ using namespace std;
 class Solution {
 public:
     string simplifyPath(string path) {
+        
         bool rel = (path[0] != '/');
         vector<string> tokens;
         string token;
@@ -34,10 +35,12 @@ public:
         return res;
     }
 };
+
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
+
     int T = 1;
     cin >> T;
     cin.ignore();

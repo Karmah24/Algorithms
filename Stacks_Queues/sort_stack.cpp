@@ -1,28 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void insertAtBottom(stack<int>& s, int x) {
+void sortedInsert(stack<int>& s, int x) {
 
-    if (s.empty()) s.push(x);
+    if (s.empty() || x > s.top()) s.push(x);
     else {
         int a = s.top();
         s.pop();
-        insertAtBottom(s, x);
+        sortedInsert(s, x);
         s.push(a);
     }
 }
-void sort(stack<int>& s, int subMin = INT_MAX) {
+void sort(stack<int>& s) {
     
     if (s.size() == 0) return;
     int x = s.top();
     s.pop();
-    sort(s, min(subMin, x));
-    insertAtBottom(s, x);
+    sort(s);
+    sortedInsert(s, x);
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
 
     stack<int> s;
     int n;
