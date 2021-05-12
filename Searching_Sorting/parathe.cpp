@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (ll i = 0; i < n; i++)
+#define loop(i, n) for (ll i = 0; i < n; i++)
 #define ll long long
 //=======================
 
@@ -10,7 +10,7 @@ public:
     ll solve(ll arr[], int n, int p) {
 
         ll lo = 0, hi = LLONG_MIN;
-        fori (i, n) hi = max(hi, arr[i]);
+        loop (i, n) hi = max(hi, arr[i]);
         hi = (p * (p + 1) * hi) / 2;
         ll res = LLONG_MAX;
 
@@ -44,7 +44,7 @@ int main() {
 	    int n, m;
 	    cin >> m >> n;
 	    ll arr[n];
-	    fori (i, n) cin >> arr[i];
+	    loop (i, n) cin >> arr[i];
 	    Solution obj;
 	    cout << obj.solve(arr, n , m) << endl;
     }

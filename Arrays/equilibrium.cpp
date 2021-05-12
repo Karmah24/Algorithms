@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 const int N = 3e5, M = N;
 //=======================
 int arr[N];
@@ -9,7 +9,7 @@ int arr[N];
 void solve() {
     int n;
     cin >> n;
-    fori (i, n) cin >> arr[i];
+    loop (i, n) cin >> arr[i];
     if (n == 1) {
         cout << 1 << endl;
         return;

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define pb push_back
 void ipgraph(int n);
 void dfs(string s);

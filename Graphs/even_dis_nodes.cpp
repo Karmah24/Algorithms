@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define pb push_back
 typedef vector<int> vi;
 
@@ -21,7 +21,7 @@ void solve() {
     int evens = 0, odds = 0;
     ipgraph();
     dfs(0, -1);
-    fori(i, n) {
+    loop(i, n) {
         if (depth[i] % 2 == 0) evens++;
         else odds++;
     }
@@ -49,7 +49,7 @@ void dfs(int s, int  parent) {
 
 void ipgraph() {
     int u, v;
-    fori (i, n - 1) {
+    loop (i, n - 1) {
         cin >> u >> v;
         u--, v--;
         graph[u].pb(v);

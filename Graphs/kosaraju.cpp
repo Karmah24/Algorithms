@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define pb push_back
 typedef vector<int>	    vi;
 
@@ -16,7 +16,7 @@ stack<int> st;
 bool vis[N] = {};
 
 void transpose(vi graph[], vi tp[], int n) {
-    fori (i, n) {
+    loop (i, n) {
         for (int v : graph[i])
             tp[v].pb(i);
     }
@@ -26,7 +26,7 @@ void solve() {
     cin >> n >> m;
     ipgraph(n, m);
 
-    fori (i, n) {
+    loop (i, n) {
         if (!vis[i])
             dfs(graph, i);
     }

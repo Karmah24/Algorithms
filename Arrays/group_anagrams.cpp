@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define all(x) x.begin(), x.end()
 #define sortall(x) sort(all(x))
 //=======================
@@ -13,7 +13,7 @@ public:
         for (string& s: sorted) sortall(s);
 
         unordered_map<string, vector<string>> map;
-        fori (i, strs.size()) {
+        loop (i, strs.size()) {
             if (map.find(sorted[i]) == map.end()) 
                 map.insert({sorted[i], vector<string>{strs[i]}});
 

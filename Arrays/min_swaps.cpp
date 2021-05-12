@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef pair<int, int>	pii; 
 const int N = 3e5, M = N;
 
@@ -15,13 +15,13 @@ pii i_map[N];
 void solve() {
     int n, s_min = 0;
     cin >> n;
-    fori (i, n) {
+    loop (i, n) {
         cin >> arr[i];
         i_map[i].first = arr[i];
         i_map[i].second = i;
     }
     sort(i_map, i_map + n);
-    fori (i ,n) {
+    loop (i ,n) {
         if (vis[i] || i_map[i].second == i) continue;
         
         int j = i, c_size = 0;

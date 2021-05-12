@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef vector<int>		vi;
 //=======================
 
@@ -61,8 +61,8 @@ int main() {
     cin >> n >> m;
     vi nums1(n);
     vi nums2(m);
-    fori (i, n) cin >> nums1[i];
-    fori (i, m) cin >> nums2[i];
+    loop (i, n) cin >> nums1[i];
+    loop (i, m) cin >> nums2[i];
     Solution obj;
     cout << obj.findMedianSortedArrays(nums1, nums2);
 }

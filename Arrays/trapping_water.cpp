@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 const int N = 1e7, M = N;
 //=======================
 int arr[N];
@@ -10,7 +10,7 @@ int arr[N];
 int solve() {
     int n, c = 0, l, r, i, j;
     cin >> n;
-    fori (i, n) cin >> arr[i];
+    loop (i, n) cin >> arr[i];
 
     i = 0, j = n - 1;
     l = arr[0], r = arr[n - 1];

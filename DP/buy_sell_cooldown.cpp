@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef pair<int, int>	pii;
 typedef vector<int>		vi;
 //=======================
@@ -36,6 +36,6 @@ int main() {
     int n;
     cin >> n;
     vi prices(n);
-    fori (i, n) cin >> prices[i];
+    loop (i, n) cin >> prices[i];
     cout << obj.maxProfit(prices) << endl;
 }

@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 //=======================
 
 int maxProfit(int K, int N, int p[]) {
@@ -33,7 +33,7 @@ int main() {
         int K, N;
         cin >> K >> N;
         int p[N];
-        fori (i, N) cin >> p[i];
+        loop (i, N) cin >> p[i];
         cout << maxProfit(K, N, p);
     }
     return 0;

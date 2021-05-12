@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef pair<int, int>	pii;
 typedef vector<int>     vi;
 typedef vector<pii>		vpii;
@@ -38,7 +38,7 @@ class Solution {
     vi collapse(vpii& all_occurences) {
         vi collapsed;
         int f = 0, s;
-        fori (i, all_occurences.size()) {
+        loop (i, all_occurences.size()) {
             s = all_occurences[i].second;
             if (i == all_occurences.size() - 1 || 
                 all_occurences[i].second >= all_occurences[i + 1].first - 1) continue;

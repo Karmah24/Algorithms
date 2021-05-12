@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef pair<int, int>	pii;
 typedef vector<int>		vi;
 //=======================
@@ -15,7 +15,7 @@ public:
     }
     pii findUnsortedSubarray(vector<int>& arr) {
         int unsorted_min = INT_MAX, unsorted_max = INT_MIN;
-        fori (i, arr.size()) {
+        loop (i, arr.size()) {
             if (!isSorted(i, arr)) {
                 unsorted_min = min(unsorted_min, arr[i]);
                 unsorted_max = max(unsorted_max, arr[i]);

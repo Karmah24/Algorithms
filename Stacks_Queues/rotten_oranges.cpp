@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 const int N = 101, M = N;
 //=======================
 int arr[N][M];
@@ -17,8 +17,8 @@ void solve() {
     int R, C;
     cin >> R >> C;
     queue<pt> queue;
-    fori (i, R) {
-        fori (j, C) {
+    loop (i, R) {
+        loop (j, C) {
             cin >> arr[i][j];
             if (arr[i][j] == 2)
                 queue.push(pt(i, j, 0));
@@ -50,8 +50,8 @@ void solve() {
         }
         queue.pop();
     }
-    fori (i, R)
-        fori (j, C)
+    loop (i, R)
+        loop (j, C)
             if (arr[i][j] == 1)
                 time = -1;
     cout << time << endl;

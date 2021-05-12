@@ -1,21 +1,21 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 //=======================
 
 void solve() {
     int n;
     cin >> n;
     vector<char> in(n);
-    fori (i, n)
+    loop (i, n)
         cin >> in[i];
         
     int freq[26];
     for (int &i : freq)
         i = 0;
     queue<char> q;
-    fori (i, n) {
+    loop (i, n) {
         freq[in[i] - 'a']++;
         q.push(in[i]);
 

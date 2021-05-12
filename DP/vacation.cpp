@@ -1,13 +1,13 @@
 #include <iostream>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 
 int main() {
     int n;
     cin >> n;
     int mat[n][3];
-    fori (i, n) fori (j, 3) cin >> mat[i][j];
+    loop (i, n) loop (j, 3) cin >> mat[i][j];
 
     if (n == 1) {
         cout << max(max(mat[0][0], mat[0][1]), mat[0][2]);

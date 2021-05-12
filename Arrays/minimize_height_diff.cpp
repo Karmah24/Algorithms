@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 //=======================
 
 class Solution {
@@ -49,7 +49,7 @@ int main() {
     int n, k;
     cin >> k >> n;
     int arr[n];
-    fori (i, n) cin >> arr[i];
+    loop (i, n) cin >> arr[i];
     Solution obj;
     cout << obj.getMinDiff(arr, n, k);
 }

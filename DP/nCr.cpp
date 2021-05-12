@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define ll long long
 
 const int mod = int(1e9 + 7);
@@ -21,7 +21,7 @@ class Solution {
     }
 public:
     int nCr(int n, int r) {
-        fori (i, n + 1) fori (j, r + 1) dp[i][j] = -1;
+        loop (i, n + 1) loop (j, r + 1) dp[i][j] = -1;
         return solve(n, r);
     }
 };

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 //=======================
 
 class Solution {
@@ -10,7 +10,7 @@ public:
         unordered_map<char, int> map;
         int res = 0, start = 0;
 
-        fori (i, str.size()) {
+        loop (i, str.size()) {
             if (map.find(str[i]) != map.end()) start = max(start, map[str[i]] + 1);
             res = max(res, i + 1 - start);
             map[str[i]] = i;

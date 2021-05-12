@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 //=======================
 
 class Solution {
@@ -30,10 +30,10 @@ int main() {
     int n, m;
     cin >> n >> m;
     int arr1[n], arr2[m];
-    fori (i, n) cin >> arr1[i];
-    fori (i, m) cin >> arr2[i];
+    loop (i, n) cin >> arr1[i];
+    loop (i, m) cin >> arr2[i];
     Solution obj;
     obj.merge(arr1, arr2, n, m);
-    fori (i, n) cout << arr1[i] << ' ';
-    fori (i, m) cout << arr2[i] << ' ';
+    loop (i, n) cout << arr1[i] << ' ';
+    loop (i, m) cout << arr2[i] << ' ';
 }

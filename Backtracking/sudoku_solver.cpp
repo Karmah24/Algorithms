@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 const int N = 9, M = N;
 //=======================
 int sudoku[N][M];
@@ -15,17 +15,17 @@ bool is_complete(int &r, int &c) {
 }
 
 bool is_safe(int num, int r, int c) {
-    fori (i, N)
+    loop (i, N)
         if (sudoku[r][i] == num)
             return false;
-    fori (i, N)
+    loop (i, N)
         if (sudoku[i][c] == num)
             return false;
     
     int box_r = r - r % 3;
     int box_c = c - c % 3;
-    fori (i, 3)
-        fori (j, 3) 
+    loop (i, 3)
+        loop (j, 3) 
             if (sudoku[i + box_r][j + box_c] == num) 
                 return false; 
     
@@ -58,10 +58,10 @@ int main() {
     int T;
     cin >> T;
     while (T--) {
-        fori (i, N) fori (j, N) cin >> sudoku[i][j];
+        loop (i, N) loop (j, N) cin >> sudoku[i][j];
         if (solve())
-            fori (i, N) {
-                fori (j, N) cout << sudoku[i][j] << " ";
+            loop (i, N) {
+                loop (j, N) cout << sudoku[i][j] << " ";
                 cout << endl;
             }
         else cout << "No solution exists";

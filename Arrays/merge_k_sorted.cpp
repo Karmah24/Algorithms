@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef pair<int, int>	pii;
 typedef vector<int>		vi;
 typedef vector<pii>		vpii;
@@ -14,12 +14,12 @@ public:
         int k = arrs.size(), n = arrs[0].size();
         priority_queue<pii, vpii, greater<pii>> pq;
         int st[k];
-        fori (i, k) {
+        loop (i, k) {
             pq.push({arrs[i][0], i});
             st[i] = 0;
         }
         vi res;
-        fori (i, n * k) {
+        loop (i, n * k) {
             auto [num, idx] = pq.top();
             res.push_back(num);
             pq.pop();
@@ -36,7 +36,7 @@ int main() {
     int n, k;
     cin >> k >> n;
     vvi arrs(k, vi(n));
-    fori (i, k) fori (j, n) cin >> arrs[i][j];
+    loop (i, k) loop (j, n) cin >> arrs[i][j];
     Solution obj;
     for (int e: obj.solve(arrs)) cout << e << ' ';
 }

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef pair<int, int>	pii;
 typedef vector<int>		vi;
 typedef vector<vi>		vvi;
@@ -48,7 +48,7 @@ int main() {
     cin >> n >> k;
 
     vi arr(n);
-    fori (i, n) cin >> arr[i];
+    loop (i, n) cin >> arr[i];
     
     Solution obj;
     for (vi e: obj.fourSum(arr, k)) {

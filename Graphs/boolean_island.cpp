@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define F first
 #define S second
 typedef pair<int, int>	pii;
@@ -30,12 +30,12 @@ void dfs(pii s) {
 
 void solve() {
     cin >> n >> m;
-    fori (i, n)
-        fori (j, m)
+    loop (i, n)
+        loop (j, m)
             cin >> mat[i][j];
     
-    fori (i, n)
-        fori (j, m) 
+    loop (i, n)
+        loop (j, m) 
             if (mat[i][j] == 1 && !vis[i][j]) {
                 region++;
                 dfs({i, j});

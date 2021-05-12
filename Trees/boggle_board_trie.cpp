@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 //=======================
 
 struct TrieNode {
@@ -53,8 +53,8 @@ public:
         for (string word: dictionary) trie.insert(word);
         vector<vector<bool>> vis(board.size(), vector<bool>(board[0].size(), false));
         unordered_set<string> finalList;
-        fori (i, board.size())
-            fori (j, board[0].size()) explore(i, j, board, trie.root, vis, finalList);
+        loop (i, board.size())
+            loop (j, board[0].size()) explore(i, j, board, trie.root, vis, finalList);
         return vector<string>(finalList.begin(), finalList.end());
     }
 };
@@ -65,11 +65,11 @@ int main() {
     int n;
     cin >> n;
     vector<string> dictionary(n);
-    fori (i, n) cin >> dictionary[i];
+    loop (i, n) cin >> dictionary[i];
     int R, C;
     cin >> R >> C;
     vector<vector<char>> board(R, vector<char>(C));
-    fori  (r, R) fori (c, C) cin >> board[r][c]; 
+    loop  (r, R) loop (c, C) cin >> board[r][c]; 
     auto start = chrono::high_resolution_clock::now();
     Solution obj;
     for (string s: obj.wordBoggle(board, dictionary))

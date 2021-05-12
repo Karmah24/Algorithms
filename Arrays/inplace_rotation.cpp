@@ -3,7 +3,7 @@
 using namespace std;
 
 #define gc getchar_unlocked
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define ll long long
 #define all(x) x.begin(), x.end()
 #define PI 3.1415926535897932384626
@@ -29,7 +29,7 @@ bool vis[N] = { };
 int arr[N];
 
 void solve(int n, int **mat) {
-    fori (i, n / 2) {
+    loop (i, n / 2) {
         int k = n - 2*i - 1;
         for (int j = 0; j < k; j++) {
 
@@ -45,7 +45,7 @@ void solve(int n, int **mat) {
             mat[i][i + j] = buff2;
         }
     }
-    fori (i, n) fori (j, n) cout << mat[i][j] << " ";
+    loop (i, n) loop (j, n) cout << mat[i][j] << " ";
     cout << endl;
 }
 
@@ -59,13 +59,13 @@ int main() {
         int n;
         cin >> n;
         int **mat = new int *[n];
-            fori (i, n)
+            loop (i, n)
                 mat[i] = new int[n];
-        fori (i, n) fori (j, n) cin >> mat[i][j];
+        loop (i, n) loop (j, n) cin >> mat[i][j];
 
         solve(n, mat);
 
-        fori (i, n)
+        loop (i, n)
             delete [] mat[i];
         delete [] mat;
     }

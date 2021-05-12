@@ -4,7 +4,13 @@ using namespace std;
 class Solution {
 public:        
     void solve() {
-        cout << "Hello World";
+        
+        unordered_set<int> s;
+        // s.insert(1);
+        // s.insert(2);
+        // s.insert(3);
+        // s.insert(1);
+        for (int e: s) cout << e << " ";
     }
 };
 

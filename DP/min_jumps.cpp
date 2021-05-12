@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef vector<int>		vi;
 //=======================
 
@@ -53,7 +53,7 @@ int main() {
         int n;
         cin >> n;
         vi nums(n);
-        fori (i, n) cin >> nums[i];
+        loop (i, n) cin >> nums[i];
         Solution obj;
         cout << obj.jump(nums) << endl;
     }

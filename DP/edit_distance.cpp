@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 
 //=======================
 int dp[101][101];
@@ -32,7 +32,7 @@ int main() {
         cin >> s1 >> s2;
         int n = s1.size(), m = s2.size();
 
-        fori (i, n) fori (j, m) dp[i][j] = -1;
+        loop (i, n) loop (j, m) dp[i][j] = -1;
 
         cout << solve(s1, s2, n - 1, m - 1);
     }

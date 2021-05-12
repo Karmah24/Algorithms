@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define all(x) x.begin(), x.end()
 #define sortall(x) sort(all(x))
 #define F first
@@ -16,8 +16,8 @@ void solve() {
     int n, k;
     cin >> n;
     vpii times(n);
-    fori (i, n) cin >> times[i].F;
-    fori (i, n) cin >> times[i].S;
+    loop (i, n) cin >> times[i].F;
+    loop (i, n) cin >> times[i].S;
     sortall(times);
     
 }

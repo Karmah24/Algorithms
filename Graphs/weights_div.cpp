@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define ll long long
 typedef vector<int>	    vi;
 typedef pair<int, int>	pii;
@@ -23,7 +23,7 @@ void solve(int n, ll s) {
     tree_dfs(0, -1);
     ll cur = 0;
     set<pair<ll, int>> st;
-    fori (i, n - 1) {
+    loop (i, n - 1) {
         cur += w[i] * cnt[i];
         st.insert({get_diff(i), i});
     }
@@ -56,7 +56,7 @@ int main() {
 
 void ipgraph(int n, int m){
     int u, v, _w;
-    fori (i, n - 1) {
+    loop (i, n - 1) {
         cin >> u >> v >> _w;
         u--, v--;
         w[i] = _w;

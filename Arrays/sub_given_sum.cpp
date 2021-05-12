@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 //=======================
 
 void solve(vector<int>& arr, int s) {
@@ -45,7 +45,7 @@ int main() {
         int n, s;
         cin >> n >> s;
         vector<int> arr(n);
-        fori (i, n) cin >> arr[i];
+        loop (i, n) cin >> arr[i];
         solve(arr, s);
     }
     return 0;

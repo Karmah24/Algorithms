@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef vector<int>		vi;
 //=======================
 
@@ -30,10 +30,10 @@ int main() {
     int n;
     cin >> n;
     vi line1(n + 2), line2(n + 2), cost1(n - 1), cost2(n - 1);
-    fori (i, n + 2) cin >> line1[i];
-    fori (i, n + 2) cin >> line2[i];
-    fori (i, n - 1) cin >> cost1[i];
-    fori (i, n - 1) cin >> cost2[i];
+    loop (i, n + 2) cin >> line1[i];
+    loop (i, n + 2) cin >> line2[i];
+    loop (i, n - 1) cin >> cost1[i];
+    loop (i, n - 1) cin >> cost2[i];
     Solution obj;
     cout << obj.solve(n, line1, line2, cost1, cost2);
 }

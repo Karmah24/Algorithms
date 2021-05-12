@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 
 const int mod = int(1e9 + 7);
 const int N = 3e5, M = N;
@@ -13,7 +13,7 @@ int arr[N];
 int solve() {
     int n, i, j, k, c = 0;
     cin >> n;
-    fori (x, n) cin >> arr[x];
+    loop (x, n) cin >> arr[x];
     sort(arr, arr + n);
     i = n - 1;
     while (i >= 2) {

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef vector<int>		vi;
 typedef vector<vi>		vvi;
 //=======================
@@ -57,7 +57,7 @@ int main() {
         int n, m;
         cin >> n >> m;
         vvi matrix(n, vi(m));
-        fori (i, n) fori (j, m) cin >> matrix[i][j];
+        loop (i, n) loop (j, m) cin >> matrix[i][j];
         Solution obj;
         for (int e: obj.solve(matrix, n, m)) cout << e << ' ';
     }

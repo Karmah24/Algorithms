@@ -1,14 +1,14 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 //=======================
 
 string pairup(string s) {
     stack<char> stack;
     unordered_map<char, char> map;
     map[')'] = '(', map['}'] = '{', map[']'] = '[';
-    fori (i, s.size()) {
+    loop (i, s.size()) {
         if (s[i] == '(' || s[i] == '{' || s[i] == '[')
             stack.push(s[i]);
         else {

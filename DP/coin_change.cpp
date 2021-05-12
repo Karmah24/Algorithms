@@ -2,7 +2,7 @@
 
 using namespace std;
 using namespace std::chrono;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef vector<int>		vi;
 const int N = 1e4, M = N;
 //=======================
@@ -37,12 +37,12 @@ int main() {
     while (T--) {
         int n, m, k;
         cin >> n >> m;
-        fori (i, m) {
+        loop (i, m) {
             cin >> k;
             v.push_back(k);
         }
         auto start = high_resolution_clock::now();
-        fori (i, n + 1) fori (j, m) dp[i][j] = -1;
+        loop (i, n + 1) loop (j, m) dp[i][j] = -1;
         cout << solve(n, 0) << endl;
         v.clear();
         auto stop = high_resolution_clock::now();

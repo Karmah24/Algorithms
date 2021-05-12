@@ -1,14 +1,14 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 const int N = 3e5, M = N;
 //=======================
 int arr[N];
 
 void solve(int n, int k) {
     int x, y;
-    fori (i, n) cin >> arr[i];
+    loop (i, n) cin >> arr[i];
     k = k % n;
     x = 0, y = k - 1;
     while (x < y) {
@@ -39,7 +39,7 @@ int main() {
         int n, k;
         cin >> n >> k;
         solve(n, k);
-        fori (i, n)
+        loop (i, n)
             cout << arr[i] << " ";
         cout << endl;      
     }

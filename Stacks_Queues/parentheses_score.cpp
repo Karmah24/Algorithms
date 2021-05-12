@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef vector<int>		vi;
 const int N = 3e5;
 //=======================
@@ -9,7 +9,7 @@ int en[N];
 
 void pairup(string s) {
     stack<int> stack;
-    fori (i, s.size()) {
+    loop (i, s.size()) {
         if (s[i] == '(')
             stack.push(i);
         else {

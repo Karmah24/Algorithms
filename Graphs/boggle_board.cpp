@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 //=======================
 
 struct TrieNode {
@@ -48,7 +48,7 @@ class Solution {
 public:
     vector<string> wordBoggle(vector<vector<char>>& board, vector<string>& dictionary) {
         int n = board.size(), m = board[0].size();
-        fori (i, n) fori (j, m) map[board[i][j]].push_back({i, j});
+        loop (i, n) loop (j, m) map[board[i][j]].push_back({i, j});
 
         Trie trie;
         for (string word: dictionary) trie.insert(word);
@@ -92,7 +92,7 @@ class Solution1 {
 public:
     vector<string> wordBoggle(vector<vector<char>>& board, vector<string>& dictionary) {
         int n = board.size(), m = board[0].size();
-        fori (i, n) fori (j, m) map[board[i][j]].push_back({i, j});
+        loop (i, n) loop (j, m) map[board[i][j]].push_back({i, j});
 
         unordered_set<string> finalList;
         vector<vector<bool>> vis(n, vector<bool>(m, false));
@@ -118,11 +118,11 @@ int main() {
     int n;
     cin >> n;
     vector<string> dictionary(n);
-    fori (i, n) cin >> dictionary[i];
+    loop (i, n) cin >> dictionary[i];
     int R, C;
     cin >> R >> C;
     vector<vector<char>> board(R, vector<char>(C));
-    fori  (r, R) fori (c, C) cin >> board[r][c]; 
+    loop  (r, R) loop (c, C) cin >> board[r][c]; 
     auto start = chrono::high_resolution_clock::now();
     Solution obj;
     for (string s: obj.wordBoggle(board, dictionary))

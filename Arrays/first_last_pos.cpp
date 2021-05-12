@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define all(x) x.begin(), x.end()
 typedef vector<int>		vi;
 const int N = 3e5, M = N;
@@ -25,7 +25,7 @@ int bs(int lo, int hi, int k) {
 void solve() {
     int n, x;
     cin >> n >> x;
-    fori (i, n) cin >> arr[i];
+    loop (i, n) cin >> arr[i];
 
     int st = bs(0, n - 1, x);
     int end = bs(st, n - 1, x + 1);

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define mp make_pair
 #define F first
 #define S second
@@ -31,11 +31,11 @@ void dfs(pii s) {
 
 void solve() {
     cin >> n >> m;
-    fori (i, n)
+    loop (i, n)
             cin >> mat[i];
     
-    fori (i, n)
-        fori (j, m) 
+    loop (i, n)
+        loop (j, m) 
             if (mat[i][j] == 'X' && !vis[i][j]) {
                 regions++;
                 dfs(mp(i, j));

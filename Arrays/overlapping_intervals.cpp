@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef pair<int, int> pii;
 typedef vector<pii> vpii;
 //=======================
@@ -13,7 +13,7 @@ void solve() {
     cin >> n;
     vpii intervals(n);
     vpii f_intv;
-    fori (i, n) 
+    loop (i, n) 
         cin >> intervals[i].first >> intervals[i].second;
     sort(intervals.begin(), intervals.end());
     int s = intervals[0].first, e = intervals[0].second;

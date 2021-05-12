@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 const int N = 3e5, M = N;
 //=======================
 int arr[N];
@@ -34,7 +34,7 @@ void find(int r, int p, int k) {
 void solve() {
     int n, k;
     cin >> n >> k;
-    fori (i, n)
+    loop (i, n)
         cin >> arr[i];
     find(0, n, k - 1);    
 }

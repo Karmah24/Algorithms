@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 typedef vector<int>		vi;
 //=======================
 
@@ -38,7 +38,7 @@ int main() {
     int n, k;
     cin >> n >> k;
     vi nums(n);
-    fori (i, n) cin >> nums[i];
+    loop (i, n) cin >> nums[i];
     Solution obj;
     cout << obj.search(nums, k) << endl;
 }

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fori(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 //=======================
 
 class Solution {
@@ -9,7 +9,7 @@ public:
     int findPages(int arr[], int n, int m) {
 
         int lo = INT_MIN, hi = 0;
-        fori (i, n) {
+        loop (i, n) {
             lo = max(arr[i], lo);
             hi += arr[i];
         }
@@ -46,7 +46,7 @@ int main() {
     int n, m;
     cin >> n;
     int arr[n];
-    fori (i, n) cin >> arr[i];
+    loop (i, n) cin >> arr[i];
     cin >> m;
     Solution obj;
     cout << obj.findPages(arr, n , m);
