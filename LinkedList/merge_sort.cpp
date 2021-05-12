@@ -1,5 +1,3 @@
-// Shivika Mahajan is an idiot
-
 #include <bits/stdc++.h>
 using namespace std;
 
