@@ -1,26 +1,24 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define ll long long 
+#define ll long long
 #define loop(i, n) for (int i = 0; i < n; i++)
 //=======================
 
-vector<long long> nextLarger(vector<long long> arr) {
+vector<ll> nextLarger(vector<ll> arr, int n) {
     
-    vector<ll> res(arr.size());
-    stack<pair<ll, int>> stack;
-    stack.push({arr[0], 0});
+    stack<ll> s;
+    s.push(arr[n - 1]);
+    vector<ll> res(n);
 
-    for (int i = 1; i < arr.size(); i++) {
-        while (!stack.empty() && arr[i] > stack.top().first) {
-            res[stack.top().second] = arr[i];
-            stack.pop();
-        }
-        stack.push({arr[i], i});
-    }
-    while (!stack.empty()) {
-        res[stack.top().second] = -1;
-        stack.pop();
+    res[n - 1] = -1;
+    for (int i = n - 2; i >= 0; i--) {
+        
+        while (!s.empty() && s.top() <= arr[i]) s.pop();
+        if (s.empty()) res[i] = -1;
+        else res[i] = s.top();
+
+        s.push(arr[i]);
     }
     return res;
 }
@@ -30,15 +28,9 @@ int main() {
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
-    int T = 1;
-    // cin >> T;
-    while (T--) {
-        int n;
-        cin >> n;
-        vector<ll> arr(n);
-        loop (i, n) cin >> arr[i];
-        for (ll e: nextLarger(arr)) cout << e << " ";
-        cout << endl;
-    }
-    return 0;
+    int n;
+    cin >> n;
+    vector<ll> arr(n);
+    loop (i, n) cin >> arr[i];
+    for (ll& e: nextLarger(arr, n)) cout << e << " ";
 }
