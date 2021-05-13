@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-
 using namespace std;
 
 #define loop(i, n) for (int i = 0; i < n; i++)
@@ -8,34 +7,37 @@ typedef vector<pii> vpii;
 //=======================
 
 
-void solve() {
-    int n;
-    cin >> n;
-    vpii intervals(n);
-    vpii f_intv;
-    loop (i, n) 
-        cin >> intervals[i].first >> intervals[i].second;
+vpii merge(vpii intervals, int n) {
+    vpii res;
     sort(intervals.begin(), intervals.end());
     int s = intervals[0].first, e = intervals[0].second;
+
     for (int i = 1; i < n; i++) {
+
         if (intervals[i].first <= e)
             e = max(e, intervals[i].second);
         else {
-            f_intv.push_back({s, e});
+            res.push_back({s, e});
             s = intervals[i].first, e = intervals[i].second;
         }
     }
-    f_intv.push_back({s, e});
-    for (auto y : f_intv) 
-        cout << y.first << " " << y.second << " ";
-    cout << endl; 
+    res.push_back({s, e});
+    
+    return res;
 }
 
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    int T;
-    cin >> T;
-    while (T--) {
-        solve();
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
+
+    int n;
+    cin >> n;
+    vpii intervals(n);
+    loop (i, n) {
+        cin >> intervals[i].first >> intervals[i].second;
+    }
+    for (auto p: merge(intervals, n)) {
+        cout << p.first << " " << p.second << " ";
     }
 }
