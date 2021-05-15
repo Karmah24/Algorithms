@@ -11,37 +11,19 @@ typedef vector<pii>		vpii;
 typedef vector<vi>		vvi;
 //=======================
 
-class Solution{
+class Solution {
 public:
-	int search(string pat, string txt) {
-	    
-	    int n = txt.size(), k = pat.size();
-	    map<char, int> patMap;
-	    map<char, int> foundMap;
-	    int unique = 0;
-	    for (char ch: pat) {
-	        patMap[ch]++;
-	        if (patMap[ch] == 1) unique++;
-	    }
-	    int found = 0, res = 0;
-	    int i = 0, j = 0;
-	    
-	    while (j < k) {
-	        if (++foundMap[txt[j]] == patMap[txt[j]]) found++;
-	        j++;
-	    }
-	    if (found == unique) res++;
-	    
-	    while (j < n) {
-	        if (foundMap[txt[i]]-- == patMap[txt[i]]) found--;
-	        i++;
-	        if (++foundMap[txt[j]] == patMap[txt[j]]) found++;
-	        j++;
-	        if (found == unique) res++;
-	    }
-	    return res;
-	}
-
+    int subarraySum(vector<int>& arr, int k) {
+        
+        unordered_map<int, int> m;
+        m[0] = 1;
+        int sum = 0, res = 0;
+        for (int i = 0; i < arr.size(); i++) {
+            sum += arr[i];
+            res += m[sum - k];
+        }
+        return res;
+    }
 };
 
 int main() {
@@ -49,8 +31,10 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    string txt, pat;
-    cin >> txt >> pat;
+	int n, k;
+	cin >> n >> k;
+	vi arr(n);
+	loop (i, n) cin >> arr[i];
     Solution obj;
-    cout << obj.search(pat, txt);
+    cout << obj.subarraySum(arr, k);
 }

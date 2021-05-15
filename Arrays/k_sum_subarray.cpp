@@ -7,24 +7,20 @@ using namespace std;
 
 class Solution{
     public:
-    ll findSubarrayNum(vector<ll> arr, int n ) {
-        
+    ll findSubarrayNum(vector<ll> arr, int n, int k) {
+
         unordered_map<ll, int> map;
+        map[0] = 1;
+        ll res = (ll)0, sum = (ll)0;
 
-        ll sum = (ll)0, res = (ll)0;
         for (int i = 0; i < n; i++) {
-
             sum += arr[i];
-            if (sum == 0) res++;
-            
+            res += map[sum - k];
             map[sum]++;
-        }
-        for (auto p: map) {
-            int x = p.second - 1;
-            res += ((x) * (x + 1)) / 2;
         }
         return res;
     }
+    
     vector<pair<int, int>> findAllSubarray(vector<ll> arr, int n) {
 
         unordered_map<ll, vector<int>> map;
@@ -52,13 +48,16 @@ int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
-    
+
     int n;
     cin >> n;
+    ll k;
+    cin >> k;
     vector<ll> arr(n);
     loop (i, n) cin >> arr[i];
     Solution obj;
-    for (auto p: obj.findAllSubarray(arr, n)) {
-        cout << p.first << " " << p.second << endl;
-    }
+    // for (auto p: obj.findAllSubarray(arr, n)) {
+    //     cout << p.first << " " << p.second << endl;
+    // }
+    cout << obj.findSubarrayNum(arr, n, k);
 }
