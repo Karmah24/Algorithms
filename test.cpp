@@ -13,16 +13,37 @@ typedef vector<vi>		vvi;
 
 class Solution {
 public:
-    int subarraySum(vector<int>& arr, int k) {
-        
-        unordered_map<int, int> m;
-        m[0] = 1;
-        int sum = 0, res = 0;
-        for (int i = 0; i < arr.size(); i++) {
-            sum += arr[i];
-            res += m[sum - k];
+    string minWindow(string str, string pat) {
+
+        unordered_map<char, int> inPat;
+        for (char& ch: pat) inPat[ch]++;
+        int k = inPat.size();
+
+        unordered_map<char, int> foundMap;
+        pair<int, int> res = {0, INT_MAX};
+        int i = 0, j = 0, found = 0;
+
+        auto comp = [](pair<int, int> a, pair<int, int> b) {
+            return (a.second - a.first) < (b.second - b.first);
+        };
+
+        while (j < str.size()) {
+
+            if (found < k) {
+                if (++foundMap[str[j]] == inPat[str[j++]]) found++;
+            }
+
+            else {
+                if (found == k) res = min(res, {i, j}, comp);
+                if (foundMap[str[i]]-- == inPat[str[i++]]) found--;
+            }
         }
-        return res;
+        while (found == k) {
+            res = min(res, {i, j}, comp);
+            if (foundMap[str[i]]-- == inPat[str[i++]]) found--;
+        }
+        if (res.second != INT_MAX) return str.substr(res.first, res.second - res.first);
+        return "";
     }
 };
 
@@ -31,10 +52,8 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-	int n, k;
-	cin >> n >> k;
-	vi arr(n);
-	loop (i, n) cin >> arr[i];
+    string str, pat;
+    cin >> str >> pat;
     Solution obj;
-    cout << obj.subarraySum(arr, k);
+    cout << obj.minWindow(str, pat);
 }

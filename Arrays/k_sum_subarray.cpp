@@ -20,7 +20,7 @@ class Solution{
         }
         return res;
     }
-    
+
     vector<pair<int, int>> findAllSubarray(vector<ll> arr, int n) {
 
         unordered_map<ll, vector<int>> map;
