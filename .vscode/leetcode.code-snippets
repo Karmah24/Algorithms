@@ -30,7 +30,6 @@
 		  "    Solution obj;",
 		  "    cout << obj.solve();",
 		  "}",
-		  ""
 		],
 		"description": ""
 	  }
