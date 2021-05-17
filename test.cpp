@@ -13,37 +13,23 @@ typedef vector<vi>		vvi;
 
 class Solution {
 public:
-    string minWindow(string str, string pat) {
-
-        unordered_map<char, int> inPat;
-        for (char& ch: pat) inPat[ch]++;
-        int k = inPat.size();
-
-        unordered_map<char, int> foundMap;
-        pair<int, int> res = {0, INT_MAX};
-        int i = 0, j = 0, found = 0;
-
-        auto comp = [](pair<int, int> a, pair<int, int> b) {
-            return (a.second - a.first) < (b.second - b.first);
-        };
-
-        while (j < str.size()) {
-
-            if (found < k) {
-                if (++foundMap[str[j]] == inPat[str[j++]]) found++;
+    int evaluatePostfix(string str) {
+        stack<int> s;
+        int a, b;
+        for (char ch: str) {
+            if (ch == '*' || ch == '/' || ch == '+' || ch == '-') {
+                a = s.top();
+                s.pop();
+                b = s.top();
+                s.pop();
+                if (ch == '*') s.push(b * a);
+                else if (ch == '/') s.push(b / a);
+                else if (ch == '+') s.push(b + a);
+                else s.push(b - a);
             }
-
-            else {
-                if (found == k) res = min(res, {i, j}, comp);
-                if (foundMap[str[i]]-- == inPat[str[i++]]) found--;
-            }
+            else s.push(ch - '0');
         }
-        while (found == k) {
-            res = min(res, {i, j}, comp);
-            if (foundMap[str[i]]-- == inPat[str[i++]]) found--;
-        }
-        if (res.second != INT_MAX) return str.substr(res.first, res.second - res.first);
-        return "";
+        return s.top();
     }
 };
 
@@ -52,8 +38,8 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    string str, pat;
-    cin >> str >> pat;
+    string str;
+    cin >> str;
     Solution obj;
-    cout << obj.minWindow(str, pat);
+    cout << obj.evaluatePostfix(str);
 }
