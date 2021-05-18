@@ -14,22 +14,16 @@ typedef vector<vi>		vvi;
 class Solution {
 public:
     int evaluatePostfix(string str) {
-        stack<int> s;
-        int a, b;
-        for (char ch: str) {
-            if (ch == '*' || ch == '/' || ch == '+' || ch == '-') {
-                a = s.top();
-                s.pop();
-                b = s.top();
-                s.pop();
-                if (ch == '*') s.push(b * a);
-                else if (ch == '/') s.push(b / a);
-                else if (ch == '+') s.push(b + a);
-                else s.push(b - a);
-            }
-            else s.push(ch - '0');
-        }
-        return s.top();
+        
+        list<int> ls;
+        ls.push_back(1);
+        ls.push_back(2);
+        ls.push_back(3);
+        ls.push_front(4);
+        cout << ls.front() << endl;
+        ls.pop_front();
+        cout << ls.front() << endl;
+        return 0;
     }
 };
 

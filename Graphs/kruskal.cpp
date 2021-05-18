@@ -10,12 +10,11 @@ struct vertex {
 class Solution {
 
     void _union(vertex* root1, vertex* root2) {
-        if (root1->rank > root2->rank) root2->par = root1;
-        else if (root1->rank < root2->rank) root1->par = root2;
-        else {
+        if (root1->rank >= root2->rank) {
             root2->par = root1;
-            root1->rank++;
+            if (root1->rank == root2->rank) root1->rank++;
         }
+        else root1->par = root2;
     }
     vertex* find(vertex* v) {
         if (!v->par) return v;
