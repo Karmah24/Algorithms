@@ -63,4 +63,5 @@ int main() {
     cin >> str;
     Solution obj;
     for (string s: obj.huffmanCodes(str, freq, n)) cout << s << ' ';
+    cout << endl;
 }

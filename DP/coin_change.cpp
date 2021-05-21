@@ -2,51 +2,49 @@
 
 using namespace std;
 using namespace std::chrono;
+
+#define ll long long
 #define loop(i, n) for (int i = 0; i < n; i++)
 typedef vector<int>		vi;
-const int N = 1e4, M = N;
 //=======================
-long dp[N][M];
-vi v;
 
-long solve(int n, int i) {
-    // if (n < v[i])
-    //     return 0;
-    if (dp[n][i] != -1)
-        return dp[n][i];
-    if (i == v.size() - 1) {
-        if (n % v[i] == 0)
-            dp[n][i] = 1;
-        else dp[n][i] = 0;
-        return dp[n][i];
+class Solution {
+    ll dp[1001][1001];
+    
+    ll solve(int S[], int n, int m, int M) {
+        
+        if (n == 0) return 1;
+        if (dp[n][m] != -1) return dp[n][m];
+        if (m == M - 1) {
+            return dp[n][m] = n % S[m] == 0 ? 1 : 0;
+        }
+        ll t = 0, i = 0;
+        while (S[m] * i <= n) {
+            t += solve(S, n - (S[m] * i), m + 1, M);
+            i++;
+        }
+        return dp[n][m] = t;
     }
-    if (n == 0) return 1;
-    long s = 0;
-    for (int j = 0; n >= v[i] * j; j++) {
-        int a = n - v[i] * j;
-        s += solve(a, i + 1);
+public:
+    long long int count( int S[], int m, int n ) {
+        
+        memset(dp, -1, sizeof(dp));
+        return solve(S, n, 0, m);
     }
-    dp[n][i] = s;
-    return s;
-}
+};
+
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
 
-    int T;
-    cin >> T;
-    while (T--) {
-        int n, m, k;
-        cin >> n >> m;
-        loop (i, m) {
-            cin >> k;
-            v.push_back(k);
-        }
-        auto start = high_resolution_clock::now();
-        loop (i, n + 1) loop (j, m) dp[i][j] = -1;
-        cout << solve(n, 0) << endl;
-        v.clear();
-        auto stop = high_resolution_clock::now();
-        cout << endl << duration_cast<microseconds>(stop - start).count();
-    }
-    return 0;
+    int n, m;
+    cin >> n >> m;
+    int S[n];
+    loop (i, n) cin >> S[i];
+    Solution obj;
+    auto start = high_resolution_clock::now();
+    cout << obj.count(S, m, n);
+    auto stop = high_resolution_clock::now();
+    cout << endl << duration_cast<microseconds>(stop - start).count();
 }
