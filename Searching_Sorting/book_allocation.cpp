@@ -1,23 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
-//=======================
-
 class Solution {
 public:
     int findPages(int arr[], int n, int m) {
 
-        int lo = INT_MIN, hi = 0;
-        loop (i, n) {
+        int lo = -1, hi = 0;
+        for (int i = 0; i < n; i++) {
             lo = max(arr[i], lo);
             hi += arr[i];
         }
+        int res;
 
-        int res = INT_MAX;
         while (lo <= hi) {
+
             int mid = (lo + hi) / 2;
             int x = 1, pages_x = 0, i = 0;
+
             while (i < n && x <= m) {
                 if (pages_x + arr[i] <= mid) {
                     pages_x += arr[i++];
@@ -46,7 +45,7 @@ int main() {
     int n, m;
     cin >> n;
     int arr[n];
-    loop (i, n) cin >> arr[i];
+    for (int i = 0; i < n; i++) cin >> arr[i];
     cin >> m;
     Solution obj;
     cout << obj.findPages(arr, n , m);
