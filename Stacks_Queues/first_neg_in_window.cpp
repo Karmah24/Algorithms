@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
 #define ll long long
 //=======================
 
@@ -36,7 +35,7 @@ int main() {
     int n, k;
     cin >> n >> k;
     int arr[n];
-    loop (i, n) cin >> arr[i];
+    for (int i = 0; i < n; i++) cin >> arr[i];
     Solution obj;
     for (ll e: obj.firstNegative(arr, n, k)) cout << e << " ";
 }

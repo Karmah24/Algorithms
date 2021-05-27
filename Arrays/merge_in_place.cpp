@@ -31,6 +31,6 @@ int main() {
     for (int i = 0; i < m; i++)  cin >> arr2[i];
     Solution obj;
     obj.merge(arr1, arr2, n, m);
-    for (int i = 0; i < n; i++)  cout << arr1[i] << ' ';
-    for (int i = 0; i < m; i++)  cout << arr2[i] << ' ';
+    for (int e: arr1)  cout << e << ' ';
+    for (int e: arr2)  cout << e << ' ';
 }

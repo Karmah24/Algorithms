@@ -34,6 +34,7 @@ void printList(ListNode* n) {
 }
 
 class Solution {
+    
     pair<ListNode*, ListNode*> getMid(ListNode* head) {
 
         ListNode *mid = head, *fast = head, *prev;
