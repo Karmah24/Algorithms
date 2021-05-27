@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
 #define ll long long
 //=======================
 
@@ -79,7 +78,7 @@ int main() {
     int n;
     cin >> n;
     ll arr[n];
-    loop (i, n) cin >> arr[i];
+    for (int i = 0; i < n; i++) arr[i];
     Solution obj;
     cout << obj.getMaxArea(arr, n);
 }

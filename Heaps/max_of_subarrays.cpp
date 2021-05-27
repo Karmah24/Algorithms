@@ -1,15 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
-typedef vector<int>		vi;
-//=======================
-
 class Solution {
 public:
     // Deque O(n)
     vector<int> maxSlidingWindow(vector<int>& arr, int k) {
-        vi res;
+        vector<int> res;
         int n = arr.size(), i = 0, j = 0;
         deque<int> q;
 
@@ -29,7 +25,7 @@ public:
     }
     // Multiset O(n * log(k));
     vector<int> maxSlidingWindow1(vector<int>& arr, int k) {
-        vi res;
+        vector<int> res;
         int n = arr.size(), i = 0, j = 0;
         multiset<int, greater<int>> s;
 
@@ -52,8 +48,8 @@ int main() {
 
     int n, k;
     cin >> n >> k;
-    vi arr(n);
-    loop (i, n) cin >> arr[i];
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) cin >> arr[i];
     Solution obj;
     for (int e: obj.maxSlidingWindow(arr, k)) cout << e << " ";
 }

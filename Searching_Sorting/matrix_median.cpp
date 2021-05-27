@@ -12,7 +12,8 @@ class Solution {
     }
 public:
     int findMedian(vector<vector<int>>& mat) {
-   
+
+        // n * m is odd
         int n = mat.size(), m = mat[0].size();
         int l = 1, r = INT_MAX - 1, res;
 
@@ -26,8 +27,7 @@ public:
             }
             else l = mid + 1;
         }
-        if ((n * m) % 2 != 0) return res;
-        return (2 * res + 1) / 2;
+        return res;
     }
 };
 

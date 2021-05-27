@@ -29,7 +29,14 @@
 		  "vector<int> "
 		],
 		"description": "vi"
-	  },
+	},
+	"vs": {
+		"prefix": "vs",
+		"body": [
+		  "vector<string> "
+		],
+		"description": "vi"
+	},
 	"vvi": {
 		"prefix": "vvi",
 		"body": [

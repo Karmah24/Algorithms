@@ -1,89 +1,87 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Node {
-    int data;
-    struct Node* next;
-    Node(int x) {
-        data = x;
+struct ListNode {
+    int val;
+    struct ListNode* next;
+    ListNode(int x) {
+        val = x;
         next = NULL;
     }
 };
 
-Node* buildList(int size) {
+ListNode* buildList(int size) {
     int val;
     cin >> val;
     
-    Node* head = new Node(val);
-    Node* tail = head;
+    ListNode* head = new ListNode(val);
+    ListNode* tail = head;
     
     for (int i=0; i<size-1; i++) {
         cin>> val;
-        tail->next = new Node(val);
+        tail->next = new ListNode(val);
         tail = tail->next;
     }
     return head;
 }
 
-void printList(Node* n) {
+void printList(ListNode* n) {
     while (n) {
-        cout<< n->data << " ";
+        cout<< n->val << " ";
         n = n->next;
     }
     cout << endl;
 }
 
 class Solution {
+    pair<ListNode*, ListNode*> getMid(ListNode* head) {
 
-    Node* findMid(Node *head, Node *tail) {
-
-        Node *slow = head, *fast = head;
-        while (fast != tail && fast->next != tail) {
-            slow = slow->next;
+        ListNode *mid = head, *fast = head, *prev;
+        while (fast && fast->next) {
+            prev = mid;
+            mid = mid->next;
             fast = fast->next->next;
         }
-        return slow;
+        return {prev, mid};
     }
-    Node* merge(Node *a, Node *b) {
+    ListNode* mergeTwoLists(ListNode *a, ListNode *b) {
 
-        Node *temp, *temp_tail;
-        temp_tail = temp = new Node(0);
+        ListNode *head = new ListNode(0);
+        ListNode *tail = head;
+        
         while (a && b) {
-            if (a->data <= b->data) {
-                temp_tail->next = new Node(a->data);
+            if (a->val < b->val) {
+                tail->next = a;
                 a = a->next;
             }
             else {
-                temp_tail->next = new Node(b->data);
+                tail->next = b;
                 b = b->next;
             }
-            temp_tail = temp_tail->next;
+            tail = tail->next;
         }
-        Node *t = a ? a : b;
-        while (t) {
-            temp_tail->next = new Node(t->data);
-            t = t->next;
-            temp_tail = temp_tail->next;
+        ListNode *rem = a ? a : b;
+        while (rem) {
+            tail->next = rem;
+            rem = rem->next;
+            tail = tail->next;
         }
-        return temp->next;
-    }
-    Node* sort(Node *head, Node *tail) {
-
-        if (head == tail) return new Node(head->data);
-        Node *mid = findMid(head, tail);
-        Node *head1 = sort(head, mid);
-        Node *head2 = sort(mid->next, tail);
-        return merge(head1, head2);
+        return head->next;
     }
 public:
-    Node* mergeSort(Node *head) {
+    ListNode* sortList(ListNode *head) {
 
-        Node *tail = head;
-        while (tail->next) tail = tail->next;
-        return sort(head, tail);
+        if (!head || !head->next) return head;
+
+        auto[prev, mid] = getMid(head);
+        prev->next = nullptr;
+
+        ListNode *lo = sortList(head);
+        ListNode *hi = sortList(mid);
+
+        return mergeTwoLists(lo, hi);
     }
 };
-
 
 int main() {
     freopen("../input.txt", "r", stdin);
@@ -91,8 +89,8 @@ int main() {
 
     int n, m;
     cin >> n;
-    Node* head = buildList(n);
+    ListNode* head = buildList(n);
     Solution obj;
-    Node* res = obj.mergeSort(head);
+    ListNode* res = obj.sortList(head);
     printList(res);
 }
