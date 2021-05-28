@@ -2,41 +2,29 @@
 using namespace std;
 
 class Solution {
-public:
-    vector<int> twoSum(const vector<int> &A, int B) {
-        
-        int n = A.size();
-        unordered_map<int, pair<int, int>> map;
-        for (int i = 0; i < n; i++) {
-            if (map.find(A[i]) == map.end()) {
-                map[A[i]].first = i;
-                map[A[i]].second = -1;
-            }
-            else if (map[A[i]].second == -1) map[A[i]].second = i;
+    int N;
+    void getPaths(int i, int j, vector<vector<int>>& m, string path, vector<string>& paths) {
+
+        if (i < 0 || j < 0 || i == N || j == N || m[i][j] == 0) return;
+
+        if (i == N - 1 && j == N - 1) {
+            paths.push_back(path);
+            return;
         }
-        vector<int> res = {n, n};
-        int l, r;
-        for (int i = 0; i < n; i++) {
-            
-            if (map.find(B - A[i]) == map.end()) continue;
-            if (map[B - A[i]].first != i) {
-                l = min(i, map[B - A[i]].first);
-                r = max(i, map[B - A[i]].first);
-            }
-            else if (map[B - A[i]].second == -1) continue;
-            else {
-                l = i;
-                r = map[B - A[i]].second;
-            }
-            if (r < res[1] || (r == res[1] && l < res[0])) {
-                res[0] = l;
-                res[1] = r;
-            }
-        }
-        if (res[0] == n) return {};
-        res[0]++;
-        res[1]++;
-        return res;
+        m[i][j] = 0;
+        getPaths(i + 1, j, m, path + "D", paths);
+        getPaths(i, j - 1, m, path + "L", paths);
+        getPaths(i, j + 1, m, path + "R", paths);
+        getPaths(i - 1, j, m, path + "U", paths);
+
+        m[i][j] = 1;
+    }
+    public:
+    vector<string> findPaths(vector<vector<int>> &m, int n) {
+        N = n;
+        vector<string> paths;
+        getPaths(0, 0, m, "", paths);
+        return paths;
     }
 };
 
@@ -45,10 +33,12 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int n, k;
-    cin >> n >> k;
-    vector<int> arr(n);
-    for (int i = 0; i < n; i++) cin >> arr[i];
+    int n;
+    cin >> n;
+    vector<vector<int>> m(n, vector<int>(n));
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++)  cin >> m[i][j];
+    }
     Solution obj;
-    for (int e: obj.twoSum(arr, k)) cout << e << " ";
+    for (string str: obj.findPaths(m, n)) cout << str << ' ';
 }

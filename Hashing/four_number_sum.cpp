@@ -5,7 +5,6 @@ class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& A, int B) {
 
-        sort(A.begin(), A.end());
         int n = A.size();
         map<int, set<pair<int, int>>> mp;
         set<vector<int>> res;
@@ -14,7 +13,11 @@ public:
             for (int j = i + 1; j < n; j++) {
                 int sum = A[i] + A[j], t = B - sum;
                 if (mp.find(t) == mp.end()) continue;
-                for (auto p: mp[t]) res.insert({p.first, p.second, A[i], A[j]});
+                for (auto p: mp[t]) {
+                    vector<int> v = {p.first, p.second, A[i], A[j]};
+                    sort(v.begin(), v.end());
+                    res.insert(v);
+                }
             }
             for (int j = 0; j < i; j++) {
                 int sum = A[i] + A[j];

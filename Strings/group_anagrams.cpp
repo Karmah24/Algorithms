@@ -1,30 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
-#define all(x) x.begin(), x.end()
-#define sortall(x) sort(all(x))
-//=======================
-
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        vector<string> sorted(all(strs));
-        for (string& s: sorted) sortall(s);
+
+        vector<string> sorted(strs.begin(), strs.end());
+        for (string& s: sorted) sort(s.begin(), s.end());
 
         unordered_map<string, vector<string>> map;
-        loop (i, strs.size()) {
-            if (map.find(sorted[i]) == map.end()) 
-                map.insert({sorted[i], vector<string>{strs[i]}});
+        for (int i = 0; i < strs.size(); i++) {
 
-            else map[sorted[i]].push_back(strs[i]);
+            map[sorted[i]].push_back(strs[i]);
         }
-        int i = 0;
         vector<vector<string>> res;
         for (auto e: map) {
-            res.push_back(vector<string>());
-            for (string s: e.second) res[i].push_back(s);
-            i++;
+            res.push_back(e.second);   
         }
         return res;
     }
