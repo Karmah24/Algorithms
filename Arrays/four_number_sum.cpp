@@ -1,41 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
-typedef pair<int, int>	pii;
-typedef vector<int>		vi;
-typedef vector<vi>		vvi;
-//=======================
-
 class Solution {
 public:
-    vvi fourSum(vector<int>& arr, int target) {
+    vector<vector<int>> fourSum(vector<int>& A, int B) {
 
-        int n = arr.size();
-        vvi res;
-        unordered_map<int, set<pii>> map;
+        sort(A.begin(), A.end());
+        int n = A.size();
+        map<int, set<pair<int, int>>> mp;
+        set<vector<int>> res;
         
-        for (int i = 1; i < n - 1; i++) {
-
+        for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-
-                int rem = target - arr[i] - arr[j];
-                if (map[rem].size() > 0) {
-                    for (auto p: map[rem]) {
-                        res.push_back({p.first, p.second, arr[i], arr[j]});
-                    }
-                }
+                int sum = A[i] + A[j], t = B - sum;
+                if (mp.find(t) == mp.end()) continue;
+                for (auto p: mp[t]) res.insert({p.first, p.second, A[i], A[j]});
             }
             for (int j = 0; j < i; j++) {
-                map[arr[i] + arr[j]].insert({arr[i], arr[j]});
+                int sum = A[i] + A[j];
+                mp[sum].insert({A[j], A[i]});
             }
         }
-        for (vi& v: res) {
-            sort(v.begin(), v.end());
-        }
-        sort(res.begin(), res.end());
-
-        return res;
+        vector<vector<int>> ans;
+        for (auto v: res) ans.push_back(v);
+        return ans;
     }
 };
 
@@ -46,13 +34,11 @@ int main() {
 
     int n, k;
     cin >> n >> k;
-
-    vi arr(n);
-    loop (i, n) cin >> arr[i];
-    
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) cin >> arr[i];
     Solution obj;
-    for (vi e: obj.fourSum(arr, k)) {
-            for (int x: e) cout << x << ' ';
-            cout << endl;
+    for (auto e: obj.fourSum(arr, k)) {
+        for (int x: e) cout << x << ' ';
+        cout << endl;
     }
 }
