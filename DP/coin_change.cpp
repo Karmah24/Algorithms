@@ -1,12 +1,8 @@
 #include<bits/stdc++.h>
-
 using namespace std;
 using namespace std::chrono;
 
 #define ll long long
-#define loop(i, n) for (int i = 0; i < n; i++)
-typedef vector<int>		vi;
-//=======================
 
 class Solution {
     ll dp[1001][1001];
@@ -41,7 +37,7 @@ int main() {
     int n, m;
     cin >> n >> m;
     int S[n];
-    loop (i, n) cin >> S[i];
+    for (int i = 0; i < n; i++)  cin >> S[i];
     Solution obj;
     auto start = high_resolution_clock::now();
     cout << obj.count(S, m, n);

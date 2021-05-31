@@ -16,6 +16,8 @@
         "iostream": "cpp",
         "random": "cpp",
         "cmath": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "*.tcc": "cpp",
+        "sstream": "cpp"
     }
 }

@@ -1,23 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef pair<int, int>	pii;
-typedef vector<pii>		vpii;
-//=======================
-
 class Solution {
 public:
-    vpii solve(string str, string pat) {
+    vector<pair<int, int>> solve(string str, string pat) {
         int n = str.size(), m = pat.size();
         int lps[m];
         for (int& e: lps) e = -1;
-        int j = 0, i = 1;
-        while (i < m) {
+        int i = 0, j = 1;
+        while (j < m) {
             if (pat[i] == pat[j]) lps[i++] = j++;
             else if (j > 0) j = lps[j - 1] + 1;
             else i++;
         }
-        vpii all_ocurences;
+        vector<pair<int, int>> all_ocurences;
         i = j = 0;
         while (i + m - j <= n) {
             if (str[i] == pat[j]) {
@@ -44,6 +40,6 @@ int main() {
     getline(cin, str);
     cin >> pat;
     Solution obj;
-    vpii all_ocurences = obj.solve(str, pat);
+    vector<pair<int, int>> all_ocurences = obj.solve(str, pat);
     for (auto e: all_ocurences) cout << e.first << ' ' << e.second << endl;
 }

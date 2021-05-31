@@ -5,16 +5,15 @@ class Solution {
 
     int dp[300];
 
-    bool solve(string& s, int l, unordered_set<string>& set) {
+    bool solve(string& str, int l, unordered_set<string>& s) {
         
         if (dp[l] != -1) return dp[l];
-        if (l == s.size()) return true;
+        if (l == str.size()) return true;
 
         dp[l] = 0;
 
-        for (int r = l + 1; r <= s.size(); r++) {
-
-            if (set.count(s.substr(l, r - l)) != 0 && solve(s, r, set)) {
+        for (int r = l + 1; r <= str.size(); r++) {
+            if (s.count(str.substr(l, r - l)) != 0 && solve(str, r, s)) {
                 dp[l] = 1;
                 break;
             }
@@ -22,13 +21,13 @@ class Solution {
         return dp[l];
     }
 public:
-    bool wordBreak(string s, vector<string>& wordDict) {
-        
-        unordered_set<string> set;
-        for (string str: wordDict) set.insert(str);
-        memset(dp, -1, sizeof dp);
+    bool wordBreak(string str, vector<string>& wordDict) {
 
-        return solve(s, 0, set);
+        unordered_set<string> s;
+        for (string str: wordDict) s.insert(str);
+        memset(dp, -1, sizeof(dp));
+
+        return solve(str, 0, s);
     }
 };
 
@@ -37,11 +36,11 @@ int main() {
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
-    string s, in;
+    string str, in;
     vector<string> wordDict;
-    cin >> s;
+    cin >> str;
     cin.ignore();
     while (getline(cin, in, ' ')) wordDict.push_back(in);
     Solution obj;
-    cout << obj.wordBreak(s, wordDict);
+    cout << obj.wordBreak(str, wordDict);
 }
