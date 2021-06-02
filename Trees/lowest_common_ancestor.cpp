@@ -12,8 +12,8 @@ TreeNode *p, *q;
 
 TreeNode* insert(TreeNode* root, int val){
     if(!root) {
-        if (val == P) {p = new TreeNode(val); return p;}
-        if (val == Q) {q = new TreeNode(val); return q;}
+        if (val == P) return p = new TreeNode(val);
+        if (val == Q) return q = new TreeNode(val);
         return new TreeNode(val);
     }
     
@@ -32,7 +32,6 @@ void traverse(TreeNode* root){
 }
 
 class Solution {
-public:
     TreeNode* lca = NULL;
     bool dfs(TreeNode* root, TreeNode* p, TreeNode* q) {
         if (lca) return true;
@@ -41,13 +40,15 @@ public:
         bool left = dfs(root->left, p, q);
         bool right = dfs(root->right, p, q);
         bool mid = (root == p || root == q);
-        if (left && right || mid && (left || right))
+
+        if (left && right || mid && (left || right)) {
             if (!lca) lca = root;
+        }
         if (left || right || mid) return true;
-        
         
         return false;
     }
+public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         dfs(root, p, q);
         return lca;

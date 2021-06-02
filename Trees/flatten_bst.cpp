@@ -43,44 +43,51 @@ TreeNode* buildTree() {
 }
 
 void printLevelOrder(TreeNode* root) {
-        queue<TreeNode*> q;
-        q.push(root);
-        string s;
-        while (!q.empty()) {
-            TreeNode* t = q.front();
-            q.pop();
-            s.append(t == nullptr ? "null" : to_string(t->val)).append(",");
-            if (t && (t->left || t->right)) {
-                q.push(t->left);
-                q.push(t->right);
-            }
+    queue<TreeNode*> q;
+    q.push(root);
+    string s;
+    while (!q.empty()) {
+        TreeNode* t = q.front();
+        q.pop();
+        s.append(t == nullptr ? "null" : to_string(t->val)).append(",");
+        if (t && (t->left || t->right)) {
+            q.push(t->left);
+            q.push(t->right);
         }
-        s.pop_back();
-        cout << s << endl;
     }
+    s.pop_back();
+    cout << s << endl;
+}
 
 class Solution {
-    pair<TreeNode*, TreeNode*> solve(TreeNode* curr, TreeNode* par) {
-        if (!curr) return {par, par};
-        auto [leftMost, prev] = solve(curr->left, curr);
-        auto [next, rightMost] = solve(curr->right, curr);
+    pair<TreeNode*, TreeNode*> solve(TreeNode *root) {
+    
+        if (!root->left && !root->right) return {root, root};
         
-        prev->left = nullptr;
-        if (prev != curr) prev->right = curr;
-        curr->left = nullptr;
-        if (curr != next) curr->right = next;
-        return {leftMost, rightMost};
+        pair<TreeNode*, TreeNode*> llist, rlist;
+        if (!root->right) {
+            llist = solve(root->left);
+            root->left = nullptr;
+            root->right = llist.first;
+            return {root, llist.second};
+        }
+        if (!root->left) {
+            rlist = solve(root->right);;
+            root->right = rlist.first;
+            return {root, rlist.second};
+        }
+        TreeNode *r = root->right;
+        llist = solve(root->left);
+        root->left = nullptr;
+        root->right = llist.first;
+        rlist = solve(r);
+        llist.second->right = rlist.first;
+        
+        return {root, rlist.second};
     }
 public:
-    TreeNode* flatten(TreeNode* root) {
-        if (!root ||(!root->left && !root->right)) return root;
-        TreeNode *next;
-        auto [head, prev] = solve(root->left, root);
-        next = solve(root->right, root).first;
-
-        prev->left = nullptr; prev->right = root;
-        root->left = nullptr; root->right = next;
-        return head;
+    TreeNode* flatten(TreeNode* A) {   
+        return solve(A).first;
     }
 };
 

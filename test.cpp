@@ -3,8 +3,7 @@ using namespace std;
 
 class Solution {
 public:
-    void solve() {
-        
+    int solve() {
                 
     }
 };
@@ -14,7 +13,7 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    
+
     Solution obj;
-    obj.solve();
+    cout << obj.solve();
 }
