@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef pair<int, int>	pii;
-//=======================
-
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -13,11 +10,11 @@ struct TreeNode {
 
 class Solution {
 public:
-    pii dfs(TreeNode* root) {
+    pair<int, int> dfs(TreeNode* root) {
         if (!root) return {0, -1001};
 
-        pii mps_left = dfs(root->left);
-        pii mps_right = dfs(root->right);
+        pair<int, int> mps_left = dfs(root->left);
+        pair<int, int> mps_right = dfs(root->right);
 
         int branch_max =  max(max(mps_left.first, mps_right.first), 0) + root->val;
         int temp = max(root->val, mps_left.first + root->val);
@@ -28,7 +25,7 @@ public:
         return {branch_max, sub_max};
     }
     int maxPathSum(TreeNode* root) {
-        pii mps = dfs(root);
+        pair<int, int> mps = dfs(root);
         return max(mps.first, mps.second);
     }
 };

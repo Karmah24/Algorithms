@@ -21,7 +21,7 @@ public:
                 j++;
             }
         }
-        return res;
+        return max(res, platforms);
     }
     int findPlatform(int arr[], int dep[], int n) {
 

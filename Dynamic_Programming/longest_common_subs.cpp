@@ -1,9 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
 const int N = 1001;
-//=======================
 
 int dpMem[N][N];
 
@@ -12,13 +10,9 @@ int lcsMem(string& s1, string& s2, int i, int j) {
     if (i < 0 || j < 0) return 0;
     if (dpMem[i][j] != -1) return dpMem[i][j];
 
-    if (s1[i] == s2[j]) dpMem[i][j] = 1 + lcsMem(s1, s2, i - 1, j - 1);
+    if (s1[i] == s2[j]) return dpMem[i][j] = 1 + lcsMem(s1, s2, i - 1, j - 1);
 
-    else {
-        dpMem[i][j] = std::max(lcsMem(s1, s2, i - 1, j), lcsMem(s1, s2, i, j - 1));
-    }
-
-    return dpMem[i][j];
+    return dpMem[i][j] = max(lcsMem(s1, s2, i - 1, j), lcsMem(s1, s2, i, j - 1));
 }
 
 int lcsTab(string s1, string s2, int x, int y) {
@@ -44,16 +38,11 @@ int main() {
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
     
-    int T;
-    cin >> T;
-    while (T--) {
-        int n, m;
-        string s1, s2;
-        cin >> n >> m;
-        cin >> s1 >> s2;
-        // memset(dpMem, -1, sizeof dpMem);
-        // cout << lcsMem(s1, s2, n - 1, m - 1) << endl;
-        cout << lcsTab(s1, s2, n, m) << endl;
-    }
-    return 0;
+    int n, m;
+    string s1, s2;
+    cin >> n >> m;
+    cin >> s1 >> s2;
+    // memset(dpMem, -1, sizeof dpMem);
+    // cout << lcsMem(s1, s2, n - 1, m - 1) << endl;
+    cout << lcsTab(s1, s2, n, m) << endl;
 }

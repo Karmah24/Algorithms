@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
-//=======================
-
 struct Job {
     int dead, profit;
 };
@@ -34,7 +31,9 @@ public:
         sort(arr, arr + n, comp);
 
         int max_dead = INT_MIN;
-        loop(i, n) max_dead = max(max_dead, arr[i].dead);
+        for (int i = 0; i < n; i++) {
+            max_dead = max(max_dead, arr[i].dead);
+        }
         DSU dsu(max_dead);
 
         vector<int> res(2);
@@ -57,7 +56,7 @@ int main() {
     int n;
     cin >> n;
     Job arr[n];
-    loop (i, n) {
+    for (int i = 0; i < n; i++) {
         int x, y;
         cin >> x >> y;
         arr[i].dead = x;
