@@ -7,11 +7,6 @@ public:
 
         unsigned int count = 0;
         
-        // while (n) {
-        //     count += n & 1;
-        //     n >>= 1;
-        // }
-
         while (n) {
             n = n & (n - 1);
             count++;

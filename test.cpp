@@ -5,7 +5,7 @@ class Solution {
 public:
     void solve() {
         
-        
+        cout << "Hello World";
     }
 };
 

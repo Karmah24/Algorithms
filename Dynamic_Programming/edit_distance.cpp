@@ -25,16 +25,11 @@ int solve(string s1, string s2, int i1, int i2) {
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 
-    int T = 1;
-    // cin >> T;
-    while (T--) {
-        string s1, s2;
-        cin >> s1 >> s2;
-        int n = s1.size(), m = s2.size();
+    string s1, s2;
+    cin >> s1 >> s2;
+    int n = s1.size(), m = s2.size();
 
-        loop (i, n) loop (j, m) dp[i][j] = -1;
+    loop (i, n) loop (j, m) dp[i][j] = -1;
 
-        cout << solve(s1, s2, n - 1, m - 1);
-    }
-    return 0;
+    cout << solve(s1, s2, n - 1, m - 1);
 }
