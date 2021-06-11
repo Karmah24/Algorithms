@@ -18,6 +18,7 @@
         "cmath": "cpp",
         "ostream": "cpp",
         "*.tcc": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "bitset": "cpp"
     }
 }

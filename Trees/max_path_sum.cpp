@@ -10,22 +10,23 @@ struct TreeNode {
 
 class Solution {
 public:
-    pair<int, int> dfs(TreeNode* root) {
+    pair<int, int> solve(TreeNode* root) {
         if (!root) return {0, -1001};
 
-        pair<int, int> mps_left = dfs(root->left);
-        pair<int, int> mps_right = dfs(root->right);
+        pair<int, int> l = solve(root->left);
+        pair<int, int> r = solve(root->right);
 
-        int branch_max =  max(max(mps_left.first, mps_right.first), 0) + root->val;
-        int temp = max(root->val, mps_left.first + root->val);
-        int if_in = max(temp, temp + mps_right.first);
-        int if_out = max(mps_left.second, mps_right.second);
+        int branch_max =  max({l.first, r.first, 0}) + root->val;
+
+        int temp = max(root->val, l.first + root->val);
+        int if_in = max(temp, temp + r.first);
+        int if_out = max(l.second, r.second);
         int sub_max = max(if_in, if_out);
         
         return {branch_max, sub_max};
     }
     int maxPathSum(TreeNode* root) {
-        pair<int, int> mps = dfs(root);
+        pair<int, int> mps = solve(root);
         return max(mps.first, mps.second);
     }
 };

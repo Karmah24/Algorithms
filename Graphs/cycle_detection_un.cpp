@@ -1,70 +1,31 @@
-#include<bits/stdc++.h>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
-#define pb push_back
-typedef vector<int>	    vi;
-void ipgraph(int n, int m);
-void dfs(int s, int par);
-const int N = 3e5, M = N;
-//=======================
+class Solution {
+    vector<vector<int>> graph;
 
-bool res;
-vi graph[N];
-bool vis[N] = {};
-
-void solve() {
-    res = 0;
-    int n, m;
-    cin >> n >> m;
-    ipgraph(n, m);
-
-    loop (i, n) {
-        if (!vis[i])
-            dfs(i, -1);
-    }
-    cout << res << endl;
-}
-
-int main() {
-    ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    int T;
-    cin >> T;
-    while (T--) {
-        solve();
-        for (auto& v : graph) 
-            v.clear();
-        for (auto& v : vis)
-                v = false;
-    }
-
-    return 0;
-}
-
-void ipgraph(int n, int m){
-    int u, v;
-    while (m--) {
-        cin >> u >> v;
-        u--, v--;
-        graph[u].pb(v);
-        graph[v].pb(u);  
-    }
-}
-
-
-void dfs(int s, int par) {
-    if (res == 1)
-        return;
-    // set.insert(s);
-    vis[s] = true;
-    for (auto v : graph[s]) {
-        if (vis[v] && v != par) {    // if (vis[v] && set.find(e) != set.end())
-            res = 1;
-            return;
+    bool dfs(int u, int par, vector<bool> &vis) {
+        vis[u] = true;
+        for (int v: graph[u]) {
+            if (vis[v] && v != par) return 1;
+            else if (!vis[v] && dfs(v, u, vis)) return 1;
         }
-        else if (!vis[v])
-            dfs(v, s);
+        return 0;
     }
-    // set.erase(set.find(s));
-}
+public:
+    bool detectCycle(int n, vector<vector<int>> &edges) {
+
+        graph = vector<vector<int>>(n);
+
+        for (int i = 0; i < edges.size(); i++) {
+
+            graph[edges[i][0] - 1].push_back(edges[i][1] - 1);
+            graph[edges[i][1] - 1].push_back(edges[i][0] - 1);
+        }
+        vector<bool> vis(n, false);
+        for (int i = 0; i < edges.size(); i++) {
+            if (!vis[i] && dfs(i, -1, vis)) return 1;
+        }
+        return 0;
+    }
+};

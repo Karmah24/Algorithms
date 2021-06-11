@@ -8,7 +8,7 @@ public:
         if (x == 0) return 0;
         if (n == 0) return 1;
 
-        int res = pow(x, n / 2);
+        int res = rec_pow(x, n / 2);
         res *= res;
         if (n % 2 == 0) return res;
         return res * x;

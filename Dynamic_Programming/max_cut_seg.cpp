@@ -1,26 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
-
 class Solution {
 public:
     int maximizeTheCuts(int n, int x, int y, int z) {
         int dp[n + 1];
-        memset(dp, 0, sizeof dp);
-        
+        memset(dp, 0, sizeof(dp));
+
         int seg[3] = {x, y, z};
-        
+
         for (int i = 1; i <= n; i++) {
             for (int j = 0; j < 3; j++) {
-                
+
                 if (i < seg[j]) continue;
-                
+
                 if (dp[i - seg[j]] != 0 || i == seg[j]) {
                     dp[i] = max(dp[i], dp[i - seg[j]] + 1);
                 }
             }
-        } 
+        }
         return dp[n];
     }
 };

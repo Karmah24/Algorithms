@@ -1,17 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
-using namespace std::chrono;
 
 class Solution {
+    vector<vector<int>> dp;
+
+    int solve(int arr[], int n, int W) {
+
+        if (W == 0) return 0;
+        if (n < 0) return INT_MAX - 1;
+        if (dp[n][W - 1] != -1) return dp[n][W - 1];
+
+        int ifin, ifout = solve(arr, n - 1, W);
+        ifin = W < arr[n] ? INT_MAX - 1 : solve(arr, n, W - arr[n]) + 1;
+
+        return dp[n][W - 1] = min(ifin, ifout);
+    }
 public:
-    int coinChange(vector<int>& coins, int amt) {
+    int minCoinsMem(int coins[], int n, int amt) {
+
+        dp = vector<vector<int>>(n, vector<int>(amt, -1));
+        int res = solve(coins, n - 1, amt);
+
+        return res == INT_MAX - 1 ? -1 : res;
+    }
+
+    int minCoinsTab(int coins[], int n, int amt) {
 
         int dp[amt + 1];
         dp[0] = 0;
         for (int i = 1; i <= amt; i++) {
             dp[i] = INT_MAX;
 
-            for (int j = 0; j < coins.size(); j++) {
+            for (int j = 0; j < n; j++) {
                 if (i < coins[j]) continue;
                 if (dp[i - coins[j]] != INT_MAX) {
                     dp[i] = min(dp[i], dp[i - coins[j] + 1]);
@@ -29,11 +49,8 @@ int main() {
 
     int n, amt;
     cin >> amt >> n;
-    vector<int> coins(n);
+    int coins[n];
     for (int i = 0; i < n; i++) cin >> coins[i];
     Solution obj;
-    auto start = high_resolution_clock::now();
-    cout << obj.coinChange(coins, amt);
-    auto stop = high_resolution_clock::now();
-    cout << endl << duration_cast<microseconds>(stop - start).count(); 
+    cout << obj.minCoinsTab(coins, n, amt);
 }

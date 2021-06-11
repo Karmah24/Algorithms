@@ -1,31 +1,27 @@
 #include<bits/stdc++.h>
 using namespace std;
-using namespace std::chrono;
 
 #define ll long long
 
 class Solution {
-    ll dp[1001][1001];
+    vector<vector<ll>> dp;
     
-    ll solve(int S[], int n, int m, int M) {
+    ll solve(int arr[], int n, int W) {
         
-        if (n == 0) return 1;
-        if (dp[n][m] != -1) return dp[n][m];
-        if (m == M - 1) {
-            return dp[n][m] = n % S[m] == 0 ? 1 : 0;
-        }
-        ll t = 0, i = 0;
-        while (S[m] * i <= n) {
-            t += solve(S, n - (S[m] * i), m + 1, M);
-            i++;
-        }
-        return dp[n][m] = t;
+        if (W == 0) return 1;
+        if (n < 0) return 0;
+        if (dp[n][W - 1] != -1) return dp[n][W - 1];
+
+        ll ifin, ifout = solve(arr, n - 1, W);
+        ifin = W < arr[n] ? 0 : solve(arr, n, W - arr[n]);
+
+        return dp[n][W - 1] = ifin + ifout;
     }
 public:
-    long long int count( int S[], int m, int n ) {
+    ll count(int S[], int m, int n) {
         
-        memset(dp, -1, sizeof(dp));
-        return solve(S, n, 0, m);
+        dp = vector<vector<ll>>(m, vector<ll>(n, -1));
+        return solve(S, m - 1, n);
     }
 };
 
@@ -39,8 +35,5 @@ int main() {
     int S[n];
     for (int i = 0; i < n; i++)  cin >> S[i];
     Solution obj;
-    auto start = high_resolution_clock::now();
     cout << obj.count(S, m, n);
-    auto stop = high_resolution_clock::now();
-    cout << endl << duration_cast<microseconds>(stop - start).count();
 }

@@ -1,9 +1,7 @@
 #include<bits/stdc++.h>
-
 using namespace std;
+
 #define ll long long
-#define loop(i, n) for (int i = 0; i < n; i++)
-//=======================
 
 vector<ll> nextLarger(vector<ll> arr, int n) {
     
@@ -31,6 +29,6 @@ int main() {
     int n;
     cin >> n;
     vector<ll> arr(n);
-    loop (i, n) cin >> arr[i];
+    for (int i = 0; i < n; i++) cin >> arr[i];
     for (ll& e: nextLarger(arr, n)) cout << e << " ";
 }

@@ -2,15 +2,15 @@
 using namespace std;
 
 class Solution {
-public:
-    int minCut(string s) {
+    vector<vector<bool>> P;
+    vector<vector<int>> dp;
 
+    void getPalindromes(string& s) {
         int n = s.size();
-        bool P[n][n];
+        P = vector<vector<bool>>(n, vector<bool>(n, false));
 
         for (int i = n - 1; i >= 0; i--) {
             P[i][i] = true;
-
             for (int j = i + 1; j < n; j++) {
                 if (s[i] != s[j]) continue;
 
@@ -18,6 +18,33 @@ public:
                 else P[i][j] = false;
             }
         }
+    }
+
+    int solve(string& s, int l, int r) {
+
+        if (P[l][r]) return 0;
+        if (dp[l][r] != -1) return dp[l][r];
+
+        dp[l][r] = r - l;
+        for (int i = l; i < r; i++) {
+            
+            int sub = solve(s, l, i) + solve(s, i + 1, r);
+            dp[l][r] = min(dp[l][r], sub + 1);
+        }
+        return dp[l][r];
+    }
+public:
+    int minCutMcm(string s) {
+
+        getPalindromes(s);
+        dp = vector<vector<int>>(s.size(), vector<int>(s.size(), -1));
+        return solve(s, 0, s.size() - 1);
+    }
+
+    int minCut(string s) {
+
+        getPalindromes(s);
+        int n = s.size();
         int cuts[n];
         for (int& e: cuts) e = 0;
 
@@ -31,7 +58,6 @@ public:
             for (int j = 1; j < i; j++) {
                 if (P[j][i]) {
                     cuts[i] = min(cuts[i], cuts[j - 1] + 1);
-                    // break;
                 }
             }
         }
@@ -47,5 +73,5 @@ int main() {
     Solution obj;
     string s;
     cin >> s;
-    cout << obj.minCut(s);
+    cout << obj.minCutMcm(s);
 }

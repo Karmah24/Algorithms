@@ -5,7 +5,17 @@ class Solution {
 public:
     void solve() {
         
-        cout << "Hello World";
+        int n = 5;
+        bitset<10> x(n);
+        bitset<10> y(~n);
+        cout << x.to_string() << endl;
+        cout << y.to_string() << endl;
+        bitset<10> z(x & y);
+        cout << z.to_string() << endl;
+        cout << (x & y);
+
+        string s1 = "hot", s2 = "cog";
+        cout << s1.compare(s2);
     }
 };
 

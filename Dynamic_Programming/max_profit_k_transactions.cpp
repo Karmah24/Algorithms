@@ -1,10 +1,8 @@
 #include<bits/stdc++.h>
-
 using namespace std;
-#define loop(i, n) for (int i = 0; i < n; i++)
-//=======================
 
 int maxProfit(int K, int N, int p[]) {
+    
     int pr[2][N];
     for (int& e: pr[0]) e = 0;
     pr[1][0] = 0;
@@ -27,14 +25,9 @@ int main() {
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
-    int T = 1;
-    cin >> T;
-    while (T--) {
-        int K, N;
-        cin >> K >> N;
-        int p[N];
-        loop (i, N) cin >> p[i];
-        cout << maxProfit(K, N, p);
-    }
-    return 0;
+    int K, N;
+    cin >> K >> N;
+    int p[N];
+    for (int i = 0; i < N; i++) cin >> p[i];
+    cout << maxProfit(K, N, p);
 }
