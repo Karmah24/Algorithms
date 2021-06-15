@@ -28,12 +28,9 @@ public:
             }
         }
         queue<string> qS, qT;
-        unordered_set<string> visS, visT;
         unordered_map<string, int> lvlS, lvlT;
         qS.push(st);
         qT.push(end);
-        visS.insert(st);
-        visT.insert(end);
         lvlS[st] = 1;
         lvlT[end] = 1;
         string u, uT;
@@ -43,9 +40,8 @@ public:
 
             for (string inter: getInter(u)) {
                 for (string v: graph[inter]) {
-                    if (visT.count(v)) return lvlS[u] + lvlT[v];
-                    if (visS.count(v)) continue;
-                    visS.insert(v);
+                    if (lvlT.count(v)) return lvlS[u] + lvlT[v];
+                    if (lvlS.count(v)) continue;
                     qS.push(v);
                     lvlS[v] = lvlS[u] + 1;
                 }
@@ -54,9 +50,8 @@ public:
             qT.pop();
             for (string inter: getInter(uT)) {
                 for (string v: graph[inter]) {
-                    if (visS.count(v)) return lvlT[uT] + lvlS[v];
-                    if (visT.count(v)) continue;
-                    visT.insert(v);
+                    if (lvlS.count(v)) return lvlT[uT] + lvlS[v];
+                    if (lvlT.count(v)) continue;
                     qT.push(v);
                     lvlT[v] = lvlT[uT] + 1;
                 }
