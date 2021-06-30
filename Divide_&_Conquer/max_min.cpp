@@ -3,7 +3,7 @@ using namespace std;
 
 class Solution {
     pair<int, int> maxMin(vector<int>& arr, int l, int r) {
-    
+
     if (l == r) return {arr[l], arr[l]};
     if (r - l == 1) {
         if (arr[l] < arr[r]) return {arr[l], arr[r]};
@@ -12,12 +12,12 @@ class Solution {
     int mid = (l + r) / 2;
     auto lo = maxMin(arr, l, mid);
     auto hi = maxMin(arr, mid + 1, r);
-    
+
     return {min(lo.first, hi.first), max(lo.second, hi.second)};
 }
 public:
    int solve(vector<int>& arr) {
-       auto res = maxMin(arr, 0, arr.size() - 1);
+        auto res = maxMin(arr, 0, arr.size() - 1);
         return res.first + res.second;
     }
 };

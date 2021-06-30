@@ -18,17 +18,19 @@ public:
         }
         return unique == j - i ? max(res, j - i) : res;
     }
-    
-    int lengthOfLongestSubstring(string str) {
-        unordered_map<char, int> map;
-        int res = 0, i = 0, j = 0;
 
-        for (int j = 0; j < str.size(); j++) {
-            if (map.find(str[j]) != map.end()) i = max(i, map[str[j]] + 1);
-            res = max(res, j + 1 - i);
-            map[str[j]] = j;
+    int lengthOfLongestSubstring(string str) {
+        unordered_map<char, int> mp;
+        int res = 1, i = 0, j = 0;
+
+        for (; j < str.size(); j++) {
+            if (mp.count(str[j]) && mp[str[j]] >= i) {
+                res = max(res, j - i);
+                i = mp[str[j]] + 1;
+            }
+            mp[str[j]] = j;
         }
-        return res;
+        return max(res, j - i);
     }
 };
 

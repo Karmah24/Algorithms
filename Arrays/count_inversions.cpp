@@ -1,9 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
 #define ll long long
-//=======================
 
 class Solution {
     ll merge(ll arr[], int l, int h) {
@@ -14,29 +12,20 @@ class Solution {
         ll inv = merge(arr, l, mid) + merge(arr, mid + 1, h);
 
         ll temp[h - l + 1];
-        int k = h - l;
-        int i = mid, j = h;
+        int k = h - l, i = mid, j = h;
 
         while (i != l - 1 && j != mid) {
             if (arr[i] > arr[j]) {
                 inv += j - mid;
                 temp[k--] = arr[i--];
             }
-            else {
-                temp[k--] = arr[j--];
-            }
+            else temp[k--] = arr[j--];
         }
-        while (i != l - 1) {
-            temp[k--] = arr[i--];
-        }
-        while (j != mid) {
-            temp[k--] = arr[j--];
-        }
+        while (i != l - 1) temp[k--] = arr[i--];
+        while (j != mid) temp[k--] = arr[j--];
 
         int x = 0, itr = l;
-        while (itr <= h) {
-            arr[itr++] = temp[x++];
-        }
+        while (itr <= h) arr[itr++] = temp[x++];
         return inv;
     }
 public:
@@ -53,7 +42,7 @@ int main() {
     ll n;
     cin >> n;
     ll arr[n];
-    loop (i, n) cin >> arr[i];
+    for (int i = 0; i < n; i++) cin >> arr[i];
     Solution obj;
     cout << obj.inversionCount(arr, n);
 }

@@ -14,7 +14,7 @@ public:
             else i++;
         }
         vector<pair<int, int>> all_ocurences;
-        i = j = 0;
+        i = j = 0; // i leads j
         while (i + m - j <= n) {
             if (str[i] == pat[j]) {
                 if (j == m - 1) {

@@ -4,8 +4,10 @@ using namespace std;
 class Solution {
 public:
     void solve() {
-
-        cout << "Hello Massa";   
+        
+        string s;
+        cin >> s;
+        cout << "Hello " << s;
     }
 };
 

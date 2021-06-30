@@ -9,7 +9,7 @@ class Solution {
         for (int i = 1 ; i < nums.size(); i++) {
             xxory ^= nums[i];
         }
-        int mask = (xxory & (xxory - 1)) ^ xxory;
+        int mask = (xxory & -xxory); //(xxory & (xxory - 1)) ^ xxory
         int x = 0, y = 0;
         for (int i = 0; i < nums.size(); i++) {
             if (nums[i] & mask) x ^= nums[i];
