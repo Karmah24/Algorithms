@@ -1,13 +1,12 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
 class Solution {
 public:
     void solve() {
-        
-        string s;
-        cin >> s;
-        cout << "Hello " << s;
+
+
     }
 };
 

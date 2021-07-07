@@ -1,51 +1,47 @@
 #include<bits/stdc++.h>
-
 using namespace std;
-#define loop(i, n) for (int i = 0; i < n; i++)
-const int N = 9, M = N;
-//=======================
-int sudoku[N][M];
+
+int sudoku[9][9];
 
 bool is_complete(int &r, int &c) {
-    for (r = 0; r < N; r++)
-        for (c = 0; c < N; c++)
-        if (sudoku[r][c] == 0)
-            return false;
+    for (r = 0; r < 9; r++) {
+        for (c = 0; c < 9; c++)
+        if (sudoku[r][c] == 0) return false;
+    }
     return true;
 }
 
 bool is_safe(int num, int r, int c) {
-    loop (i, N)
-        if (sudoku[r][i] == num)
-            return false;
-    loop (i, N)
-        if (sudoku[i][c] == num)
-            return false;
     
+    for (int i = 0; i < 9; i++) {
+        if (sudoku[r][i] == num) return false;
+    }
+    for (int i = 0; i < 9; i++) {
+        if (sudoku[i][c] == num) return false;
+    }
+
     int box_r = r - r % 3;
     int box_c = c - c % 3;
-    loop (i, 3)
-        loop (j, 3) 
-            if (sudoku[i + box_r][j + box_c] == num) 
-                return false; 
-    
-    return true; 
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (sudoku[i + box_r][j + box_c] == num) return false;
+        }
+    }
+    return true;
 }
 
 bool solve() {
     int r, c;
-    if (is_complete(r, c))
-        return true;
-    
+    if (is_complete(r, c)) return true;
+
     for (int num = 1; num <= 9; num++) {
         if (is_safe(num, r, c)) {
+
             sudoku[r][c] = num;
 
-            // if (num == 9 && sudoku[r][c] == 0)
-            //     return false; 
             if (solve())
                 return true;
-            
+
             sudoku[r][c] = 0;
         }
     }
@@ -55,16 +51,13 @@ bool solve() {
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 
-    int T;
-    cin >> T;
-    while (T--) {
-        loop (i, N) loop (j, N) cin >> sudoku[i][j];
-        if (solve())
-            loop (i, N) {
-                loop (j, N) cout << sudoku[i][j] << " ";
-                cout << endl;
-            }
-        else cout << "No solution exists";
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) cin >> sudoku[i][j];
     }
-    return 0;
+    if (solve())
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) cout << sudoku[i][j] << " ";
+            cout << endl;
+        }
+    else cout << "No solution exists";
 }

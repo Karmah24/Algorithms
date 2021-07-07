@@ -8,36 +8,26 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-int parseInt(string s) {
-    stringstream ss(s);
-    int num;
-    ss >> num;
-    return num;
-}
-
-TreeNode* buildTree() {
+TreeNode* ipTree() {
     vector<string> in;
     string s;
-    while (getline(cin, s, ',')) in.push_back(s);
+    while (getline(cin, s, ' ')) in.push_back(s);
 
-    if (in[0] == "null") return nullptr;
-
-    TreeNode* root = new TreeNode(parseInt(in[0]));
+    TreeNode* root = new TreeNode(stoi(in[0]));
     queue<TreeNode*> q;
     q.push(root);
     int i = 1;
     while (!q.empty() && i < in.size()) {
         TreeNode* t = q.front();
         q.pop();
-        if (t == nullptr) continue;
 
-        t->left = in[i] == "null" ? nullptr : new TreeNode(parseInt(in[i]));
-        q.push(t->left);
-        i++;
+        t->left = in[i] == "N" ? nullptr : new TreeNode(stoi(in[i++]));
+        if (t->left) q.push(t->left);
+
         if (i == in.size()) break;
-        t->right = in[i] == "null" ? nullptr : new TreeNode(parseInt(in[i]));
-        q.push(t->right);
-        i++;
+
+        t->right = in[i] == "N" ? nullptr : new TreeNode(stoi(in[i++]));
+        if (t->right) q.push(t->right);
     }
     return root;
 }
@@ -96,7 +86,7 @@ int main() {
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
-    TreeNode* root = buildTree();
+    TreeNode* root = ipTree();
     Solution obj;
     TreeNode* head = obj.flatten(root);
     printLevelOrder(head);
