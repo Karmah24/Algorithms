@@ -26,16 +26,16 @@ public:
             mstWeight += (*itr).first;
 
             for (auto edge: adj[u]) {
-                if (inMst[edge.first]) continue;
+
                 int v = edge.first, w = edge.second;
-                if (cutEdge[v] > w) {
-                    auto itr = s.find({cutEdge[v], v});
-                    if (itr != s.end()) {
-                        s.erase(itr);
-                    }
-                    cutEdge[v] = w;
-                    s.insert({cutEdge[v], v});
-                }
+
+                if (inMst[v] || cutEdge[v] <= w) continue;
+
+                auto itr = s.find({cutEdge[v], v});
+                if (itr != s.end()) s.erase(itr);
+                
+                cutEdge[v] = w;
+                s.insert({cutEdge[v], v});
             }
         }
         return mstWeight;

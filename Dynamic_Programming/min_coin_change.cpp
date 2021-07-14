@@ -26,13 +26,14 @@ public:
 
     int minCoinsTab(int coins[], int n, int amt) {
 
+        sort(coins, coins + n);
         int dp[amt + 1];
         dp[0] = 0;
         for (int i = 1; i <= amt; i++) {
             dp[i] = INT_MAX;
 
             for (int j = 0; j < n; j++) {
-                if (i < coins[j]) continue;
+                if (i < coins[j]) break;
                 if (dp[i - coins[j]] != INT_MAX) {
                     dp[i] = min(dp[i], dp[i - coins[j] + 1]);
                 }

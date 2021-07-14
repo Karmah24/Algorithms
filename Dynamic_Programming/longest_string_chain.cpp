@@ -1,14 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
-//=======================
 
 class Solution {
     int solve(string str, unordered_map<string, int>& chain, unordered_set<string>& vis) {
+        
         if (vis.find(str) != vis.end()) return chain[str];
         int longest = 1, n = str.size();
-        loop (i, n) {
+        for (int i = 0; i < n; i++) {
             string next = str.substr(0, i) + str.substr(i + 1, n);
             if (chain.find(next) == chain.end()) continue;
             longest = max(longest, solve(next, chain, vis) + 1);
@@ -22,9 +21,9 @@ public:
         int n = words.size();
         unordered_map<string, int> chain;
         unordered_set<string> vis;
-        loop (i, n) chain.insert({words[i], 1});
+        for (int i = 0; i < n; i++) chain.insert({words[i], 1});
         int longest = 0;
-        loop (i, n) {
+        for (int i = 0; i < n; i++) {
             if (vis.find(words[i]) != vis.end()) continue;
             longest = max(longest, solve(words[i], chain, vis));
         }
@@ -35,7 +34,7 @@ public:
 class Solution1 {
     int solve(string str, unordered_map<string, int>& chain) {
         int longest = 1, n = str.size();
-        loop (i, n) {
+        for (int i = 0; i < n; i++) {
             string next = str.substr(0, i) + str.substr(i + 1, n);
             if (chain.find(next) == chain.end()) continue;
             longest = max(longest, chain[next] + 1);
@@ -47,7 +46,7 @@ public:
     int longestStrChain(vector<string>& words) {
         int n = words.size();
         unordered_map<string, int> chain;
-        loop (i, n) chain.insert({words[i], 1});
+        for (int i = 0; i < n; i++) chain.insert({words[i], 1});
 
         auto comp = [](string a, string b) {
             return (a.size() < b.size());

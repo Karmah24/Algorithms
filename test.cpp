@@ -1,12 +1,12 @@
-
 #include <bits/stdc++.h>
 using namespace std;
+#define ln '\n'
 
 class Solution {
 public:
-    void solve() {
+    int solve() {
 
-
+        
     }
 };
 
@@ -16,5 +16,5 @@ int main() {
     freopen("output.txt", "w", stdout);
 
     Solution obj;
-    obj.solve();
+    cout << obj.solve();
 }

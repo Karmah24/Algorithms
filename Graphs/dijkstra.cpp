@@ -11,20 +11,22 @@ public:
         s.insert({0, S});
 
         while(!s.empty()) {
+
             auto itr = s.begin();
+            int u = (*itr).second;  
             s.erase(itr);
-            int u = (*itr).second;
+
             for (auto edge: adj[u]) {
-                int v = edge.first;
-                int edgeLen = edge.second;
-                if (dis[v] > dis[u] + edgeLen) {
-                    auto temp = s.find({dis[v], v});
-                    if (temp != s.end()) {
-                        s.erase(temp);
-                    }
-                    dis[v] = dis[u] + edgeLen;
-                    s.insert({dis[v], v});
-                }
+
+                int v = edge.first, edgeLen = edge.second;
+
+                if (dis[v] <= dis[u] + edgeLen) continue;
+
+                auto temp = s.find({dis[v], v});
+                if (temp != s.end()) s.erase(temp);
+
+                dis[v] = dis[u] + edgeLen;
+                s.insert({dis[v], v});
             }
         }
         return dis;
