@@ -16,12 +16,13 @@ public:
             if (--steps == 0) {
                 jumps++;
                 steps = max_reach - i;
-                if (steps == 0 && arr[i] == 0) return -1;
+                if (steps == 0) return -1;
             }
         }
         return jumps;
     }
 };
+
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);

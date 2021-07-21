@@ -12,7 +12,7 @@ bool is_complete(int &r, int &c) {
 }
 
 bool is_safe(int num, int r, int c) {
-    
+
     for (int i = 0; i < 9; i++) {
         if (sudoku[r][i] == num) return false;
     }
@@ -35,13 +35,11 @@ bool solve() {
     if (is_complete(r, c)) return true;
 
     for (int num = 1; num <= 9; num++) {
+
         if (is_safe(num, r, c)) {
-
+            
             sudoku[r][c] = num;
-
-            if (solve())
-                return true;
-
+            if (solve()) return true;
             sudoku[r][c] = 0;
         }
     }
@@ -50,6 +48,8 @@ bool solve() {
 
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
 
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 9; j++) cin >> sudoku[i][j];

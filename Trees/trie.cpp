@@ -2,7 +2,7 @@
 using namespace std;
 
 struct TrieNode {
-    unordered_map<char, TrieNode*> map;
+    unordered_map<char, TrieNode*> mp;
     bool isEnd = false;
 };
 class Trie {
@@ -12,8 +12,8 @@ public:
         if (!root) root = new TrieNode();
         TrieNode* curr = root;
         for (char c: word) {
-            if (curr->map.find(c) == curr->map.end()) curr->map[c] = new TrieNode();
-            curr = curr->map[c];
+            if (curr->mp.find(c) == curr->mp.end()) curr->mp[c] = new TrieNode();
+            curr = curr->mp[c];
         }
         curr->isEnd = true;
     }
@@ -21,7 +21,7 @@ public:
         if (!root) return false;
         TrieNode* curr = root;
         for (char c: word) {
-            curr = curr->map[c];
+            curr = curr->mp[c];
             if (!curr) return false;
         }
         return curr->isEnd;
@@ -46,10 +46,3 @@ public:
         cout << present << endl;
     }
 };
-int main() {
-    ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    Solution obj;
-    obj.solve();
-}

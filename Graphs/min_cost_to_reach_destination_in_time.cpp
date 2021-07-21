@@ -17,7 +17,7 @@ class Solution1 {
         dp[u][time] = INT_MAX;
         for (auto n: graph[u]) {
 
-            // if (vis[n.v]) continue;
+            // if (vis[n.first]) continue;
             int res = solve(n.first, time - n.second, toll);
             if (res != INT_MAX) dp[u][time] = min(dp[u][time], res + toll[u]);
         }

@@ -19,7 +19,6 @@ class Solution {
             }
         }
     }
-
     int solve(string& s, int l, int r) {
 
         if (P[l][r]) return 0;
@@ -27,7 +26,7 @@ class Solution {
 
         dp[l][r] = r - l;
         for (int i = l; i < r; i++) {
-            
+
             int sub = solve(s, l, i) + solve(s, i + 1, r);
             dp[l][r] = min(dp[l][r], sub + 1);
         }
@@ -40,7 +39,6 @@ public:
         dp = vector<vector<int>>(s.size(), vector<int>(s.size(), -1));
         return solve(s, 0, s.size() - 1);
     }
-
     int minCut(string s) {
 
         getPalindromes(s);
@@ -49,12 +47,12 @@ public:
         for (int& e: cuts) e = 0;
 
         for (int i = 1; i < n; i++) {
-            
+
             if (P[0][i]) continue;
 
             cuts[i] = cuts[i - 1] + 1;
             if (cuts[i] == 1) continue;
-            
+
             for (int j = 1; j < i; j++) {
                 if (P[j][i]) {
                     cuts[i] = min(cuts[i], cuts[j - 1] + 1);
@@ -69,7 +67,7 @@ int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
-    
+
     Solution obj;
     string s;
     cin >> s;

@@ -1,11 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ln '\n'
 
 class Solution {
 public:
     int solve() {
-
+        
         
     }
 };
