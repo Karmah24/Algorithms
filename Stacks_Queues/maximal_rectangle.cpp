@@ -2,7 +2,7 @@
 using namespace std;
 
 class Solution {
-    int solve(int n, int arr[]) {
+    int solve(int n, vector<int> &arr) {
         
         stack<int> st;
         st.push(-1);
@@ -10,7 +10,7 @@ class Solution {
         
         while (i < n) {
             
-            if (st.top() == -1 || arr[i] > arr[st.top()]) st.push(i++);
+            if (st.top() == -1 || arr[i] >= arr[st.top()]) st.push(i++);
             else {
                 int curr = st.top();
                 st.pop();
@@ -29,8 +29,7 @@ public:
         
         if (mat.size() == 0) return 0;
         int R = mat.size(), C = mat[0].size();
-        int sub[C];
-        memset(sub, 0, sizeof(sub));
+        vector<int> sub(C, 0);
         int res = 0;
         for (int i = 0; i < R; i++) {
                 

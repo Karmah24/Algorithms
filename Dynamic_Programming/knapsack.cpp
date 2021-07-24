@@ -20,7 +20,6 @@ public:
         dp = vector<vector<int>>(n, vector<int>(W, -1));
         return solve(wt, val, W, n - 1);
     }
-
     int knapSackTab(int W, int wt[], int val[], int n) {
 
         int dp[2][W + 1];

@@ -6,26 +6,25 @@ using namespace std;
 
 class Solution {
 public:
-    ll getMaxArea(ll arr[], int n) {
+    ll getMaxArea(vector<ll> &arr, int n) {
 
-        stack<int> s;
-        ll res = 0, tp, area;
+        stack<int> st;
+        st.push(-1);
+        ll res = 0, curr, area;
         int i = 0;
         while (i < n) {
-            if (s.empty() || arr[s.top()] <= arr[i]) s.push(i++);
 
+            if (st.top() == -1 || arr[st.top()] <= arr[i]) st.push(i++);
             else {
-                tp = s.top();
-                s.pop();
-                area = arr[tp] * (s.empty() ? i : i - s.top() - 1);
-                res = max(res, area);
+                curr = st.top();
+                st.pop();
+                res = max(res, arr[curr] * (i - st.top() - 1));
             }
         }
-        while (!s.empty()) {
-            tp = s.top();
-            s.pop();
-            area = arr[tp] * (s.empty() ? n : n - 1 - s.top());
-            res = max(res, area);
+        while (st.top() != -1) {
+            curr = st.top();
+            st.pop();
+            res = max(res, arr[curr] * (n - st.top() - 1));
         }
         return res;
     }
@@ -38,7 +37,7 @@ int main() {
 
     int n;
     cin >> n;
-    ll arr[n];
+    vector<ll> arr(n); 
     for (int i = 0; i < n; i++) cin >> arr[i];
     Solution obj;
     cout << obj.getMaxArea(arr, n);

@@ -12,7 +12,8 @@ class Solution {
 public:
     int countSetBits(int n, int a = 0) {
         if (n <= 0) return a;
-        int x = getMaxPower(n + 1);
+        // int x = getMaxPower(n + 1);
+        int x = floor(log2(n + 1));
         a += (1 << (x - 1)) * x;
         a += n - (1 << x) + 1;
         return countSetBits(n - (1 << x), a);

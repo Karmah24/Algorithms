@@ -30,16 +30,17 @@ public:
     int hammingDistance(vector<int>& arr) {
 
         ll ones, zeros, res = (ll)0;
+        int x = 1;
 
         for (int i = 0; i < 32; i++) {
 
             ones = zeros = (ll)0;
-            int x = 1 << i;
 
             for (int j = 0; j < arr.size(); j++) {
                 if (arr[j] & x) ones = ((ones % MOD) + 1) % MOD;
                 else zeros = ((zeros % MOD) + 1) % MOD;
             }
+            x = x << 1;
             if (ones == 0 || zeros == 0) continue;
             ll m = ((ones % MOD) * (zeros % MOD)) % MOD;
             res = ((res % MOD) + (m * 2) % MOD) % MOD;
