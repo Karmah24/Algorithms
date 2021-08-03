@@ -25,7 +25,6 @@ public:
         
         return solve(arr, n - 1, sum);
     }
-
     bool equalPartitionTab(int n, int arr[]) {
 
         int sum = 0;

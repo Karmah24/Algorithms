@@ -17,20 +17,21 @@ void solve() {
 
     vector<ll> res(n, LLONG_MIN);
     stack<ll> st;
+    st.push(-1);
     int i = 0;
     while (i < n) {
-        if (st.empty() || arr[st.top()] <= arr[i]) st.push(i++);
+        if (st.top() == -1 || arr[st.top()] <= arr[i]) st.push(i++);
         else {
             int tp = st.top();
             st.pop();
-            int curr = st.empty() ? i : i - st.top() - 1;
+            int curr = i - st.top() - 1;
             res[curr - 1] = max(res[curr - 1], arr[tp]);
         }
     }
-    while (!st.empty()) {
+    while (st.top() != -1) {
         int tp = st.top();
         st.pop();
-        int curr = st.empty() ? n : n - st.top() - 1;
+        int curr = n - st.top() - 1;
         res[curr - 1] = max(res[curr - 1], arr[tp]);
     }
     for (int i = n - 2; i >= 0; i--) {
