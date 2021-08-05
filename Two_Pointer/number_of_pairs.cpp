@@ -1,4 +1,3 @@
-
 // given l, r & a(n) find all ordered pairs : (l <= a[i] + a[j] <= r)
 // find all pairs : (a[i] + a[j] <= r) - all pairs : (a[i] + a[j] < l)
 
@@ -37,7 +36,6 @@ void solve() {
 
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    cout.setf(ios::fixed);
 
     int T = 1;
     cin >> T;
