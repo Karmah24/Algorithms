@@ -21,7 +21,7 @@ class Solution {
     }
 public:
     vector<vector<string>> partition(string str) {
-    
+
         int n = str.size();
         partitions.clear();
         isPd = vector<vector<bool>>(n, vector<bool>(n, false));
@@ -31,9 +31,7 @@ public:
 
             for (int j = i + 1; j < n; j++) {
                 if (str[i] != str[j]) continue;
-
                 if (j - i == 1 || isPd[i + 1][j - 1]) isPd[i][j] = true;
-                else isPd[i][j] = false;
             }
         }
         vector<string> partition;

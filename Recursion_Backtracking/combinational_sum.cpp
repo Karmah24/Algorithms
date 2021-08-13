@@ -13,7 +13,7 @@ class Solution {
         for (int j = i; j < arr.size(); j++) {
             combo.push_back(arr[j]);
             getCombos(j, x - arr[j], arr, combo);
-            combo.pop_back(); 
+            combo.pop_back();
         }
     }
 

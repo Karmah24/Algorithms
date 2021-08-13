@@ -14,7 +14,7 @@ class Solution {
 
             if (dict.find(t) == dict.end()) continue;
 
-            for (string s: getSentences(r + 1, str, dict)) {
+            for (string &s: getSentences(r + 1, str, dict)) {
                 if (s != "") dp[l].push_back(t + " " + s);
                 else dp[l].push_back(t);
             }

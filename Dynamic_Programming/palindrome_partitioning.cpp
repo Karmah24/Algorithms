@@ -15,7 +15,6 @@ class Solution {
                 if (s[i] != s[j]) continue;
 
                 if (j - i == 1 || P[i + 1][j - 1]) P[i][j] = true;
-                else P[i][j] = false;
             }
         }
     }

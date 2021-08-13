@@ -12,7 +12,7 @@ class Solution {
         }
         int x = k / fact[n - 1];
         if (k % fact[n - 1] == 0) x--;
-        k -= fact[n - 1] * x; 
+        k -= fact[n - 1] * x;
 
         seq += to_string(digits[x]);
         digits.erase(digits.begin() + x);
@@ -24,7 +24,7 @@ public:
         fact[0] = 1;
         for (int i = 1; i < 13; i++) {
             fact[i] = i * fact[i - 1];
-        }    
+        }
         vector<int> digits;
         string seq = "";
         if (n > 13) {

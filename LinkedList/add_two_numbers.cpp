@@ -3,11 +3,8 @@ using namespace std;
 
 struct Node {
     int data;
-    struct Node* next;
-    Node(int x) {
-        data = x;
-        next = NULL;
-    }
+    Node* next = nullptr;
+    Node(int x) : data(x) {}
 };
 
 Node* buildList(int size) {
@@ -49,6 +46,7 @@ class Solution {
     }
     
     Node* add(Node *a, Node *b) {
+        
         Node *res_head, *res_tail;
         res_head = res_tail = new Node(0);
 
@@ -82,7 +80,7 @@ class Solution {
         return res_head->next;
     }
 public:
-    struct Node* addTwoLists(struct Node* first, struct Node* second) {
+    Node* addTwoLists(Node* first, Node* second) {
         return reverse(add(reverse(first), reverse(second)));        
     }
 };

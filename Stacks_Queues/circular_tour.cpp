@@ -1,10 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
-typedef vector<int>		vi;
-//=======================
-
 class Solution {
     int prev(int x, int n) {
         return (x - 1 + n) % n;
@@ -41,8 +37,8 @@ int main() {
     cin >> n;
     vector<int> gas(n);
     vector<int> dist(n);
-    loop (i, n) cin >> gas[i];
-    loop (i, n) cin >> dist[i];
+    for (int i = 0; i < n; i++) cin >> gas[i];
+    for (int i = 0; i < n; i++) cin >> dist[i];
     Solution obj;
     cout << obj.canCompleteCircuit(gas, dist);
 }
