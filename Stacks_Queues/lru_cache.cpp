@@ -15,8 +15,7 @@ public:
         dll.push_front(k_val);
         mp[key] = dll.begin();
         return k_val.second;
-    }
-    
+    }   
     void set(int key, int value) {
         if (mp.find(key) == mp.end() && dll.size() == cap) {
             pair<int, int> k_val = dll.back();

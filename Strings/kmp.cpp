@@ -3,34 +3,35 @@ using namespace std;
 
 class Solution {
 public:
-    vector<pair<int, int>> solve(string str, string pat) {
+    vector<int> search(string pat, string str) {
+
         int n = str.size(), m = pat.size();
-        int lps[m];
-        for (int& e: lps) e = -1;
+        vector<int> lps(m, -1);
+
         int i = 0, j = 1;
         while (j < m) {
-            if (pat[i] == pat[j]) lps[i++] = j++;
-            else if (j > 0) j = lps[j - 1] + 1;
-            else i++;
+            if (pat[i] == pat[j]) lps[j++] = i++;
+            else if (i > 0) i = lps[i - 1] + 1;
+            else j++;
         }
-        vector<pair<int, int>> all_ocurences;
-        i = j = 0; // i leads j
+        vector<int> res;
+        i = j = 0;
         while (i + m - j <= n) {
+
             if (str[i] == pat[j]) {
-                if (j == m - 1) {
-                    all_ocurences.push_back({i - m + 1, i});
-                    j = -1;
-                    i--;
+                i++, j++;
+                if (j == m) {
+                    res.push_back(i - m + 1);
+                    j = lps[j - 1] + 1;
                 }
-                i++;
-                j++;
             }
             else if (j > 0) j = lps[j - 1] + 1;
             else i++;
         }
-        return all_ocurences;
+        return res;
     }
 };
+
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);
@@ -40,6 +41,5 @@ int main() {
     getline(cin, str);
     cin >> pat;
     Solution obj;
-    vector<pair<int, int>> all_ocurences = obj.solve(str, pat);
-    for (auto e: all_ocurences) cout << e.first << ' ' << e.second << endl;
+    for (int e: obj.search(pat, str)) cout << e << " ";
 }

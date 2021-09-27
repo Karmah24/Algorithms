@@ -1,10 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop(i, n) for (int i = 0; i < n; i++)
-typedef vector<int>		vi;
-//=======================
-
 class Solution {
 public:
     int search(vector<int>& arr, int target) {
@@ -37,8 +33,8 @@ int main() {
 
     int n, k;
     cin >> n >> k;
-    vi nums(n);
-    loop (i, n) cin >> nums[i];
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) cin >> arr[i];
     Solution obj;
-    cout << obj.search(nums, k) << endl;
+    cout << obj.search(arr, k);
 }

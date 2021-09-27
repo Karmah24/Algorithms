@@ -12,10 +12,11 @@ int maximalSquare(int R, int C, vector<vector<int>> &mat) {
 
             if (mat[i][j] == 0) continue;
 
-            int right = j == C - 1 ? 0 : dp[i][j + 1];
-            int down = i == R - 1 ? 0 : dp[i + 1][j];
-            int diag = (i == R - 1 || j == C - 1) ? 0 : dp[i + 1][j + 1];
-            dp[i][j] = min({right, down, diag}) + 1;
+            if (i == R - 1 || j == C - 1) dp[i][j] = 1;
+
+            else {
+                dp[i][j] = min({dp[i + 1][j], dp[i][j + 1], dp[i + 1][j + 1]}) + 1;
+            }
             res = max(res, dp[i][j]);
         }
     }

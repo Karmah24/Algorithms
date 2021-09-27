@@ -7,18 +7,15 @@ class Solution {
 
     bool solve(string& str, int l, unordered_set<string>& s) {
         
-        if (dp[l] != -1) return dp[l];
         if (l == str.size()) return true;
-
-        dp[l] = 0;
+        if (dp[l] != -1) return dp[l];
 
         for (int r = l + 1; r <= str.size(); r++) {
             if (s.count(str.substr(l, r - l)) != 0 && solve(str, r, s)) {
-                dp[l] = 1;
-                break;
+                return dp[l] = 1;
             }
         }
-        return dp[l];
+        return dp[l] = 0;
     }
 public:
     bool wordBreak(string str, vector<string>& wordDict) {

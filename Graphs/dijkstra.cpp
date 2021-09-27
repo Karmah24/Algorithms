@@ -1,14 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define ll long long
+
 class Solution {
 public:
-    vector <int> dijkstra(int V, vector<pair<int, int>> adj[], int S) {
+    vector<int> dijkstraSet(int V, vector<pair<int, int>> adj[], int src) {
 
         vector<int> dis(V, INT_MAX);
         set<pair<int, int>> s;
-        dis[S] = 0;
-        s.insert({0, S});
+        dis[src] = 0;
+        s.insert({0, src});
 
         while(!s.empty()) {
 
@@ -31,6 +33,32 @@ public:
         }
         return dis;
     }
+    vector<ll> dijkstra(int V, vector<pair<int, int>> adj[], int src) {
+
+        vector<ll> dis(V, LLONG_MAX);
+        priority_queue<pair<ll, ll>> pq;
+        vector<bool> vis(dis.size(), false);
+        
+        dis[src] = 0;
+        pq.push({0, src});
+
+        while (!pq.empty()) {
+
+            auto [d, u] = pq.top();
+            pq.pop();
+            if (vis[u]) continue;
+            vis[u] = true;
+
+            for (auto n: adj[u]) {
+                auto [v, w] = n;
+                if (dis[v] > -d + w) {
+                    dis[v] = -d + w;
+                    pq.push({-dis[v], v});
+                }
+            }
+        }
+        return dis;
+    }
 };
 
 int main() {
@@ -38,7 +66,7 @@ int main() {
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
 
-    int V, E, S;
+    int V, E, src;
     cin >> V >> E;
     vector<pair<int, int>> graph[V];
     while (E--) {
@@ -47,7 +75,7 @@ int main() {
         graph[u].push_back({v, w});
         graph[v].push_back({u, w});
     }
-    cin >> S;
+    cin >> src;
     Solution obj;
-    for (int e: obj.dijkstra(V, graph, S)) cout << e << ' ';
+    for (int e: obj.dijkstra(V, graph, src)) cout << e << ' ';
 }
