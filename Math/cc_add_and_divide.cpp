@@ -4,12 +4,13 @@ using namespace std;
 #define ln '\n'
 //=======================
 
-const int N = 1e7;
+const int N = 1e4;
 int spf[N + 1];
+int fac_prod[N];
 
 void sieve() {
     memset(spf, -1, sizeof(spf));
- 
+
     for (int p = 2; p * p <= N; p++) {
         if (spf[p] != -1) continue;
         for (int i = p * p; i <= N; i += p) {
@@ -19,21 +20,22 @@ void sieve() {
 }
 int factorize(int n) {
 
-    int fac = spf[n];
-    int res = 1;
+    if (fac_prod[n] != -1) return fac_prod[n];
+
+    int a = n, fac = spf[n], res = 1;
 
     while (fac != -1) {
 
-        while (n % fac == 0) n /= fac;
+        while (a % fac == 0) a /= fac;
         res *= fac;
-        fac = spf[n];
+        fac = spf[a];
     }
-    if (n != 1) res *= n;
-    return res;
+    if (a != 1) res *= a;
+    return fac_prod[n] = res;
 }
 
 bool solve(int a, int b) {
-    
+
     // return b % factorize(a) == 0;
 
     while (true) {
@@ -46,12 +48,12 @@ bool solve(int a, int b) {
 }
 
 int main() {
-
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    // freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
-    
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
+
     // sieve();
+    // memset(fac_prod, -1, sizeof(fac_prod));
 
     int T = 1;
     cin >> T;

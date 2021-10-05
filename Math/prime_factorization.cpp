@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+const int N = 1000;
+int spf[N];
+vector<pair<int, int>> factors[N];
+
 // single query
 vector<pair<int, int>> factorize(int n) {
 
@@ -25,8 +29,6 @@ vector<pair<int, int>> factorize(int n) {
 }
 
 // multiple queries
-const int N = 1e8;
-int spf[N];
 
 void sieve() {
     memset(spf, -1, sizeof(spf));
@@ -40,24 +42,28 @@ void sieve() {
 }
 vector<pair<int, int>> sieve_factorize(int n) {
 
-    vector<pair<int, int>> factors;
-    int fac = spf[n], cnt, p;
+    if (!factors[n].empty()) return factors[n];
+
+    int a = n, cnt, fac = spf[n];
 
     while (fac != -1) {
-        p = fac, cnt = 0;
-        while (p == fac || n == fac) {
+        cnt = 0;
+        while (a % fac == 0) {
             cnt++;
-            n /= p;
-            p = (n == p ? p : spf[n]);
+            a /= fac;
         }
-        factors.push_back({fac, cnt});
-        fac = p;
+        factors[n].push_back({fac, cnt});
+        fac = spf[a];
     }
-    if (n != 1) factors.push_back({n, 1});
-    return factors;
+    if (a != 1) factors[n].push_back({a, 1});
+    return factors[n];
 }
 
 int main() {
+    ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
+
     int n;
     cin >> n;
     sieve();

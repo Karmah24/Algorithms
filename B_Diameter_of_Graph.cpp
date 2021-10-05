@@ -5,14 +5,15 @@ using namespace std;
 #define ll long long
 //=======================
 
-int solve() {
+bool solve() {
     
+    int n, m, k;
+    cin >> n >> m >> k;
     
 }
 
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    cout.setf(ios::fixed);
     #ifndef ONLINE_JUDGE
         freopen("input.txt", "r", stdin);
         freopen("output.txt", "w", stdout);
@@ -22,7 +23,8 @@ int main() {
     cin >> T;
     while (T--) {
         
-        cout << solve() << ln;
+        if (solve()) cout << "YES" << ln;
+        else cout << "NO" << ln;
     }
     return 0;
 }
