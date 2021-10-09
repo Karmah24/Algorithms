@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define ln '\n'
-//=======================
-
 void solve() {
     
     int n;
@@ -20,9 +17,9 @@ void solve() {
         if (max_idx == n - 1 - i) continue;
         res.push_back({max_idx + 1, n - i});
     }
-    cout << res.size() << ln;
+    cout << res.size() << '\n';
     for (auto move: res) {
-        cout << move[0] << " " << move[1] << " " << 1 << ln;
+        cout << move[0] << " " << move[1] << " " << 1 << '\n';
     }
 }
 
