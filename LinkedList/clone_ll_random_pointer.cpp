@@ -69,7 +69,6 @@ Node* copyList(Node *head) {
     }
     return new_head;
 }
-
 int main() {
     int n, m, a, b;
     cin >> n >> m;

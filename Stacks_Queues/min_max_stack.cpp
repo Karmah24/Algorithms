@@ -37,7 +37,6 @@ public:
         return min;
     }
 };
-
 int main() {
     MinStack minStack;
     minStack.push(2147483646);

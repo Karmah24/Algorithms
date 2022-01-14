@@ -25,7 +25,6 @@ int getMin(int l, int r) {
     int k = 1 << p;
     return min(dp[p][l], dp[p][r - k + 1]);
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);

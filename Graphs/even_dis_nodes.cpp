@@ -28,7 +28,6 @@ void solve() {
     int pairs = ((odds * (odds - 1)) / 2) + ((evens * (evens - 1)) / 2);
     cout << "#res " << pairs << endl;  
 }
-
 int main() {
     int T;
     cin >> T;

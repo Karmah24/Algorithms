@@ -31,7 +31,6 @@ int minCuts(int n, int m) {
     dp = vector<vector<int>>(n + 1, vector<int>(m + 1, -1));
     return solve(n, m);
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);

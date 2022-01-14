@@ -16,7 +16,6 @@ int dfs(vector<int> adj[], int u = 0, int par = -1) {
     if (u == x) x_tot = tot;
     return tot + 1;
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);

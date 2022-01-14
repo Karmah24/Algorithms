@@ -28,7 +28,6 @@ public:
         return perimeter_edge(matrix, 0, res);
     }
 };
-
 int main() {
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);

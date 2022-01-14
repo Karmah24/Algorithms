@@ -43,7 +43,6 @@ void solve() {
     cout << "#res " << regions << endl;
     
 }
-
 int main() {
     int T;
     cin >> T;

@@ -45,7 +45,6 @@ void solve() {
     cout << "#res " << r_max << endl;
     
 }
-
 int main() {
     int T;
     cin >> T;

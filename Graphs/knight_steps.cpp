@@ -42,7 +42,6 @@ public:
 	    return jumps[KnightPos[0] - 1][KnightPos[1] - 1];
 	}
 };
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);

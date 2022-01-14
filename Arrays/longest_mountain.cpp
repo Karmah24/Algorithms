@@ -59,7 +59,6 @@ public:
         return res;
     }
 };
-
 int main() {
     int n;
     cin >> n;

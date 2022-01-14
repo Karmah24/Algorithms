@@ -50,7 +50,6 @@ public:
         return res + 1;
     }
 };
-
 int main() {
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);

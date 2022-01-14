@@ -19,7 +19,6 @@ void reverse(stack<int>& s) {
     reverse(s);
     insertAtBottom(s, x);
 }
-
 int main() {
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);

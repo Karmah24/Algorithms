@@ -36,7 +36,6 @@ void solve() {
     for (int i = 0; i < factors[0].first - 1; i++) cout <<setprecision(0)<< factors[0].second << " ";
     cout <<setprecision(0)<< n / (pow(factors[0].second, factors[0].first - 1)) << endl;
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     cout.setf(ios::fixed);

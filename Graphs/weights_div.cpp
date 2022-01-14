@@ -38,7 +38,6 @@ void solve(int n, ll s) {
     }
     cout << res << endl;
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     int T;

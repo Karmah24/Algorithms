@@ -58,7 +58,6 @@ vector<pair<int, int>> sieve_factorize(int n) {
     if (a != 1) factors[n].push_back({a, 1});
     return factors[n];
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);

@@ -19,7 +19,6 @@ int editDistance(string &s1, string &s2) {
     dp = vector<vector<int>>(s1.size(), vector<int>(s2.size(), -1));
     return solve(s1, s2, s1.size() - 1, s2.size() - 1);
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);

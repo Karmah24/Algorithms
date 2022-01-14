@@ -19,7 +19,6 @@ void sort(stack<int>& s) {
     sort(s);
     sortedInsert(s, x);
 }
-
 int main() {
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);

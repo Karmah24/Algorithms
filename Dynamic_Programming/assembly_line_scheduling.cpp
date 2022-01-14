@@ -21,7 +21,6 @@ public:
         return min(dp[0][n - 1] + line1[n + 1] + line1[n], dp[1][n - 1] + line2[n + 1] + line2[n]);
     }
 };
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);

@@ -22,7 +22,6 @@ void solve() {
     cin >> n >> m;
     cout << mpow(mpow(2, n) - 1, m) << '\n';
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 

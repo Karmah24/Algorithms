@@ -12,7 +12,6 @@ int treeCount(int y1, int x1, int y2, int x2, vector<vector<int>> &grid) {
     res += (x1 == 0 || y1 == 0) ? 0 : grid[y1 - 1][x1 - 1];
     return res;
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);

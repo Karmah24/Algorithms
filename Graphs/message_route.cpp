@@ -41,7 +41,6 @@ void solve(int st, int fin, int n, vector<int> adj[]) {
     cout << path.size() << '\n';
     for (int i = path.size() - 1; i >= 0; i--) cout << path[i] << ' ';
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 

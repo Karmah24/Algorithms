@@ -18,7 +18,6 @@ public:
         return res[0] && res[1] && res[2];
     }
 };
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);

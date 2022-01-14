@@ -38,7 +38,6 @@ public:
         return false;
     }
 };
-
 int main() {
     int N;
     cin >> N;

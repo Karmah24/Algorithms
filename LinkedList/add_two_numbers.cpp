@@ -84,7 +84,6 @@ public:
         return reverse(add(reverse(first), reverse(second)));        
     }
 };
-
 int main() {
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);

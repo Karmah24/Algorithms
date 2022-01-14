@@ -34,7 +34,6 @@ int solve(int n, int m, int arr[]) {
     for (int j = 0; j < m; j++) res = add(res, dp[0][j]);
     return res;
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 

@@ -27,7 +27,6 @@ int solve(string s, int lo, int hi) {
     else
         return solve(s, lo, en[lo]) + solve(s, en[lo]+1, hi);
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 

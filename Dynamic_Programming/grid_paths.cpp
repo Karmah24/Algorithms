@@ -22,7 +22,6 @@ int allPaths(int n, vector<string> &grid) {
     dp = vector<vector<ll>>(n, vector<ll>(n, -1));
     return solve(0, 0, n, grid);
 }
-
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);
