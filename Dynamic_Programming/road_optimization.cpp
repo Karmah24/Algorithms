@@ -3,31 +3,31 @@ using namespace std;
 #define ll long long
 //=======================
 
-int n, l, k;
 vector<int> a, d;
 vector<vector<ll>> dp;
 
-ll f(int sp, int i, int k) {
+ll f(int n, int k) {
 
-    if (i == n + 1) return 0;
-    if (dp[i][k] != -1) return dp[i][k];
-
-    int ifin, ifout = f(a[i], i + 1, k);
-    ifin = k > 0 ? f(sp, i + 1, k - 1) : INT_MAX;
-
-    return dp[i][k] = min(ifin, ifout) + sp * (d[i] - d[i - 1]);
+    if (n == 0) return 0;
+    if (dp[n][k] != -1) return dp[n][k];
+    dp[n][k] = INT_MAX;
+    for (int i = max(0, n - 1 - k); i < n; i++) {
+        dp[n][k] = min(dp[n][k], f(i, k - (n - i - 1)) + a[i] * (d[n] - d[i]));
+    }
+    return dp[n][k];
 }
 ll solve() {
-    
+
+    int n, l, k;
     cin >> n >> l >> k;
-    a.resize(n); 
+    a.resize(n);
     d.resize(n + 1);
     for (int i = 0; i < n; i++) cin >> d[i];
     d[n] = l;
     for (int i = 0; i < n; i++) cin >> a[i];
 
     dp.assign(n + 1, vector<ll>(k + 1, -1));
-    return f(a[0], 1, k);
+    return f(n, k);
 }
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
@@ -39,7 +39,7 @@ int main() {
     int T = 1;
     // cin >> T;
     while (T--) {
-        
+
         cout << solve() << '\n';
     }
     return 0;
