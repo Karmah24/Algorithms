@@ -5,6 +5,8 @@ using namespace std;
 
 ll solve() {
 
+    string s = to_string(5) + " " + to_string(8);
+    cout << s << '\n';
     return 24;
 }
 int main() {
@@ -15,7 +17,7 @@ int main() {
     #endif
 
     int T = 1;
-    cin >> T;
+    // cin >> T;
     while (T--) {
 
         cout << solve() << '\n';
