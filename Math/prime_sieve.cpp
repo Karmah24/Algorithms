@@ -9,6 +9,6 @@ void sieveOfEratosthenes() {
     prime[1] = false;
     for (int p = 2; p * p <= N; p++) {
         if (!prime[p]) continue;
-        for (int i = p * p; i < N; i += p) prime[i] = false;
+        for (int i = p * p; i <= N; i += p) prime[i] = false;
     }
 }
