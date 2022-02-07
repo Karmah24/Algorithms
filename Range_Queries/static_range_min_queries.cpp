@@ -2,7 +2,7 @@
 using namespace std;
 
 #define ln '\n'
-const int N = 18, M = 2e5;
+const int N = 25, M = 2e5;
 //=======================
 
 int dp[N][M];
