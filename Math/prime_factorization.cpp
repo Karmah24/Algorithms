@@ -35,18 +35,15 @@ void sieve() {
  
     for (int p = 2; p * p < N; p++) {
         if (spf[p] != -1) continue;
-        for (int i = p * p; i < N; i += p) {
+        for (int i = p; i < N; i += p) {
             if (spf[i] == -1) spf[i] = p;
         }
     }
 }
 vector<pair<int, int>> sieve_factorize(int n) {
-
     if (!factors[n].empty()) return factors[n];
-
     int a = n, cnt, fac = spf[n];
-
-    while (fac != -1) {
+    while (a > 1) {
         cnt = 0;
         while (a % fac == 0) {
             cnt++;
@@ -55,7 +52,6 @@ vector<pair<int, int>> sieve_factorize(int n) {
         factors[n].push_back({fac, cnt});
         fac = spf[a];
     }
-    if (a != 1) factors[n].push_back({a, 1});
     return factors[n];
 }
 int main() {

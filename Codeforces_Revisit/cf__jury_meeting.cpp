@@ -12,6 +12,7 @@ int solve() {
     cin >> n;
     vector<int> arr(n);
     for (auto &e: arr) cin >> e;
+    
     int mx = *max_element(arr.begin(), arr.end());
     int cnt_mx = count(arr.begin(), arr.end(), mx);
     int k = count(arr.begin(), arr.end(), mx - 1);

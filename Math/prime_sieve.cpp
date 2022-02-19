@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N = 100;
-bool prime[N];
-
+const int N = 4e4;
+vector<bool> isPrime(N, true);
 void sieveOfEratosthenes() {
-    memset(prime, true, sizeof(prime));
-    prime[1] = false;
+    isPrime[1] = false;
     for (int p = 2; p * p <= N; p++) {
-        if (!prime[p]) continue;
-        for (int i = p * p; i <= N; i += p) prime[i] = false;
+        if (!isPrime[p]) continue;
+        for (int i = p * p; i <= N; i += p) isPrime[i] = false;
     }
 }
