@@ -15,7 +15,7 @@ int solve() {
         }
         sort(p[i].rbegin(), p[i].rend());
     }
-    sort(p.rbegin(), p.rend(), [&](auto &v1, auto &v2){
+    sort(p.rbegin(), p.rend(), [](auto &v1, auto &v2) {
         return v1[1].first < v2[1].first;
     });
     int res = p[0][1].first;
