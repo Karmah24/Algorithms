@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
 //================================================================
 
 int solve() {
@@ -12,7 +11,11 @@ int solve() {
     int b = 0, c = 0;
     for (int i = 0; i < n; i++) {
 
-        if (s[i] == t[i]) continue;
+        if (s[i] == t[i]) {
+            if (s[i] == 'c' && b > 0) return false;
+            if (s[i] == 'a' && c > 0) return false;
+            continue;
+        };
 
         if (s[i] != 'b' && t[i] != 'b') return false;
 
@@ -39,8 +42,8 @@ int solve() {
 signed main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     #ifndef ONLINE_JUDGE
-        freopen("input.txt", "r", stdin);
-        freopen("output.txt", "w", stdout);
+        freopen("../input.txt", "r", stdin);
+        freopen("../output.txt", "w", stdout);
     #endif
     int T = 1;
     cin >> T;
