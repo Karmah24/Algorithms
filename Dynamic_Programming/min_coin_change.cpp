@@ -26,20 +26,23 @@ public:
 
     int minCoinsTab(int coins[], int n, int amt) {
 
-        sort(coins, coins + n);
         int dp[amt + 1];
+        memset(dp, -1, sizeof(dp));
         dp[0] = 0;
+    
         for (int i = 1; i <= amt; i++) {
-            dp[i] = INT_MAX;
-
+    
             for (int j = 0; j < n; j++) {
-                if (i < coins[j]) break;
-                if (dp[i - coins[j]] != INT_MAX) {
-                    dp[i] = min(dp[i], dp[i - coins[j] + 1]);
-                }
+    
+                if (i < coins[j]) continue;
+
+                if (dp[i - coins[j]] == -1) continue;
+
+                if (dp[i] == -1) dp[i] = dp[i - coins[j]] + 1;
+                else dp[i] = min(dp[i], dp[i - coins[j]] + 1);
             }
         }
-        return dp[amt] == INT_MAX ? -1 : dp[amt];
+        return dp[amt];
     }
 };
 int main() {

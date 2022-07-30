@@ -1,52 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
-//================================================================
-
+ 
 int solve() {
-    
-    int n;
-    string s, t;
-    cin >> n >> s >> t;
+ 
+    int n, amt;
+    cin >> n >> amt;
+    int arr[n];
+    for (int i = 0; i < n; i++) cin >> arr[i];
+ 
+    int dp[amt + 1];
+    memset(dp, -1, sizeof(dp));
+    dp[0] = 0;
+ 
+    for (int i = 1; i <= amt; i++) {
+ 
+        for (int j = 0; j < n; j++) {
+ 
+            if (i < arr[j]) continue;
 
-    int b = 0, c = 0;
-    for (int i = 0; i < n; i++) {
+            if (dp[i - arr[j]] == -1) continue;
 
-        if (s[i] == t[i]) continue;
-
-        if (s[i] != 'b' && t[i] != 'b') return false;
-
-        if (s[i] == 'a') {
-            if (c > 0) return false;
-            b++;
-        }
-        else if (s[i] == 'b') {
-            if (t[i] == 'c') {
-                if (b > 0) return false;
-                c++;
-            }
-            else if (b == 0) return false;
-            else b--;
-        }
-        else {
-            if (b > 0) return false;
-            if (c == 0) return false;
-            else c--;
+            if (dp[i] == -1) dp[i] = dp[i - arr[j]] + 1;
+            else dp[i] = min(dp[i], dp[i - arr[j]] + 1);
         }
     }
-    return (b == 0 && c == 0);
+    return dp[amt];
 }
-signed main() {
+ 
+int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    #ifndef ONLINE_JUDGE
-        freopen("input.txt", "r", stdin);
-        freopen("output.txt", "w", stdout);
-    #endif
+    cout.setf(ios::fixed);
+ 
     int T = 1;
-    cin >> T;
+    // cin >> T;
     while (T--) {
-        if (solve()) cout << "YES\n";
-        else cout << "NO\n";
+        cout << solve();
     }
     return 0;
 }

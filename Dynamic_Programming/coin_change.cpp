@@ -7,44 +7,42 @@ ll add(ll x, ll y) {return ((x % MOD) + (y % MOD)) % MOD;}
 
 // vector<vector<ll>> dp;
 
-// ll solve(int n, int W, int arr[]) {
+// ll solve(int n, int W, int coins[]) {
 
 //     if (W < 0) return 0;
 //     if (n < 0) return W == 0;
 //     if (dp[n][W] != -1) return dp[n][W];
 
-//     return dp[n][W] = add(solve(n - 1, W, arr), solve(n, W - arr[n], arr));
+//     return dp[n][W] = add(solve(n - 1, W, coins), solve(n, W - coins[n], coins));
 // }
 
-int count(int n, int amt, int arr[]) {
+int count(int n, int amt, int coins[]) {
 
     // dp = vector<vector<ll>>(n, vector<ll>(amt + 1, -1));
-    // return solve(n - 1, amt, arr);
+    // return solve(n - 1, amt, coins);
 
-    ll dp[2][amt + 1];
-    memset(dp[0], 0, sizeof(dp[0]));
-    dp[0][0] = dp[1][0] = 1;
+    ll dp[amt + 1];
+    memset(dp, 0, sizeof(dp[0]));
+    dp[0] = 1;
 
     for (int i = 0; i < n; i++) {
 
-        for (int j = 1; j <= amt; j++) {
+        for (int j = coins[i]; j <= amt; j++) {
 
-            if (j < arr[i]) dp[1][j] = dp[0][j];
-            else dp[1][j] = add(dp[0][j] , dp[1][j - arr[i]]);
+            dp[j] = add(dp[j] , dp[j - coins[i]]);
         }
-        for (int k = 0; k <= amt; k++) dp[0][k] = dp[1][k];
     }
-    return dp[1][amt];
+    return dp[amt];
 }
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    freopen("../input.txt", "r", stdin);
-    freopen("../output.txt", "w", stdout);
+    // freopen("../input.txt", "r", stdin);
+    // freopen("../output.txt", "w", stdout);
 
     int n, amt;
     cin >> n >> amt;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
-    cout << count(n, amt, arr);
+    int coins[n];
+    for (int i = 0; i < n; i++) cin >> coins[i];
+    cout << count(n, amt, coins);
     return 0;
 }
