@@ -19,7 +19,7 @@ int main() {
         cin >> u >> v >> w;
         dis[u - 1][v - 1] = dis[v - 1][u - 1] = min(dis[u - 1][v - 1], (ll)w);
     }
-for (int k = 0; k < n; k++) {
+    for (int k = 0; k < n; k++) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
 
