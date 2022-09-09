@@ -60,8 +60,8 @@ int main() {
         adj[u].push_back(v);
     }
     Solution obj;
-    for (auto ssc: obj.tarjans(V, adj)) {
-        for (int e: ssc) cout << e << " ";
+    for (auto scc: obj.tarjans(V, adj)) {
+        for (int e: scc) cout << e << " ";
         cout << '\n';
     }
 }

@@ -12,7 +12,7 @@ ll maxScore(int arr[], int n) {
     }
     dp[n - 1][n - 1] = arr[n - 1];
 
-    for (int i = n - 2; i >= 0; i--) {
+    for (int i = n - 3; i >= 0; i--) {
 
         for (int j = i + 2; j < n; j++) {
 

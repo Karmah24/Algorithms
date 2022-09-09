@@ -14,9 +14,11 @@ void eulerTour(int u, int par) {
 }
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    freopen("../input.txt", "r", stdin);
-    freopen("../output.txt", "w", stdout);
-
+	#ifndef ONLINE_JUDGE
+	  freopen("input.txt", "r", stdin);
+	  freopen("output.txt", "w", stdout);
+	#endif
+ 
     int n, queries;
     cin >> n;
     adj = vector<vector<int>>(n);
