@@ -30,7 +30,7 @@ public:
     LCA(vector<vector<int>> &adj, int root = 0) {
 
         n = adj.size();
-        first.resize(n);
+        first.assign(n, -1);
         dep.clear();
         eulerTour.clear();
         dfs(adj, root);
@@ -50,7 +50,7 @@ public:
         }
     }
     int query(int u1, int u2) {
-        int l = first[u1 - 1], r = first[u2 - 1];
+        int l = first[u1], r = first[u2];
         if (l > r) swap(l, r);
         return eulerTour[get_min(l, r, dep)] + 1;
     }
@@ -86,7 +86,7 @@ int main() {
         while (q--) {
             int u1, u2;
             cin >> u1 >> u2;
-            cout << lca.query(u1, u2) << '\n';
+            cout << lca.query(u1 - 1, u2 - 1) << '\n';
         }
     }
     return 0;

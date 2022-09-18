@@ -8,7 +8,7 @@ void solve() {
 
     int n, m;
     cin >> n >> m;
-    int arr[n + 1], idx[n + 2];
+    vector<int> arr(n), idx(n + 1);
     for (int i = 1; i <= n; i++) {
         cin >> arr[i];
         idx[arr[i]] = i;

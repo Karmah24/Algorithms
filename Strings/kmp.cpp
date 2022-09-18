@@ -1,44 +1,40 @@
+// https://www.youtube.com/watch?v=nJbNe0Yzjhw
+
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
-public:
-    vector<int> search(string pat, string str) {
+int kmp(string pat, string str) {
 
-        int n = str.size(), m = pat.size();
-        vector<int> lps(m, -1);
+    int n = str.size(), m = pat.size();
 
-        int i = 0, j = 1;
-        while (j < m) {
-            if (pat[i] == pat[j]) lps[j++] = i++;
-            else if (i > 0) i = lps[i - 1] + 1;
-            else j++;
-        }
-        vector<int> res;
-        i = j = 0;
-        while (i + m - j <= n) {
+    vector<int> lps(m);
+    lps[0] = 0;
+    for (int i = 1; i < m; i++) {
 
-            if (str[i] == pat[j]) {
-                i++, j++;
-                if (j == m) {
-                    res.push_back(i - m + 1);
-                    j = lps[j - 1] + 1;
-                }
-            }
-            else if (j > 0) j = lps[j - 1] + 1;
-            else i++;
-        }
-        return res;
+        int l = lps[i - 1];
+        while (l > 0 && pat[l] != pat[i]) l = lps[l - 1];
+        if (pat[l] == pat[i]) l++;
+        lps[i] = l;
     }
-};
+    int prev = 0;
+    vector<bool> match(n, false);
+    for (int i = 0; i < n; i++) {
+
+        int l = prev;
+        while (l > 0 && pat[l] != str[i]) l = lps[l - 1];
+        if (pat[l] == str[i]) l++;
+        if (l == m) match[i - m + 1] = true;
+        prev = l;
+    }
+    return count(match.begin(), match.end(), true);
+}
+
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    freopen("../input.txt", "r", stdin);
-    freopen("../output.txt", "w", stdout);
+    // freopen("../input.txt", "r", stdin);
+    // freopen("../output.txt", "w", stdout);
 
-    string str, pat;
-    getline(cin, str);
-    cin >> pat;
-    Solution obj;
-    for (int e: obj.search(pat, str)) cout << e << " ";
+    string pat, str;
+    cin >> pat >> str;
+    cout << kmp(pat, str);
 }

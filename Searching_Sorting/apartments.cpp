@@ -1,40 +1,44 @@
-// given m apartment sizes and n applications with desired size and k wiggle room
-// rent out max possible apartments
-
 #include <bits/stdc++.h>
 using namespace std;
+//================================================================
 
-int solve() {
+void testcase() {
 
-    int n, m, k;
+	int n, m, k;
     cin >> n >> m >> k;
-    int a[n], b[m];
+    vector<int> a(n), b(m);
     for (int i = 0; i < n; i++) cin >> a[i];
     for (int i = 0; i < m; i++) cin >> b[i];
-    // allot the smallest acceptable room to each applicant
-    // starting from the one with the smallest requirement 
-    sort(a, a + n); 
-    sort(b, b + m);
 
-    int j = 0, res = 0;
-    for (int i = 0; i < n && j < m; i++) {
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
 
-        int lb = lower_bound(b + j, b + m, a[i] - k) - b;
-        if (a[i] - k <= b[lb] && b[lb] <= a[i] + k) {
+    int res = 0;
+    int i = 0, j = 0;
+    while (i < n && j < m) {
+
+        if (b[j] < a[i] - k) j++;
+        else if (b[j] > a[i] + k) i++;
+        else {
             res++;
-            j = lb + 1;
+            i++, j++;
         }
     }
-    return res;
+    cout << res;
 }
-int main() {
-    ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    cout.setf(ios::fixed);
 
-    int T = 1;
-    // cin >> T;
-    while (T--) {
-        cout << solve();
-    }
-    return 0;
+int32_t main() {
+	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+	#ifndef ONLINE_JUDGE
+	  freopen("input.txt", "r", stdin);
+	  freopen("output.txt", "w", stdout);
+	#endif
+
+	int T = 1;
+	// cin >> T;
+	while (T--) {
+		testcase();
+		cout << '\n';
+	}
+	return 0;
 }

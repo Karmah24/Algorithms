@@ -6,7 +6,7 @@ const int INF = 1e9 + 5;
 
 void testcase() {
 
-	
+
 }
 
 int32_t main() {

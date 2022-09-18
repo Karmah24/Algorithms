@@ -19,17 +19,14 @@ int lisDP(vector<int> &arr) {
 }
 int LIS_bin_search(vector<int>& arr) {
 
-    int n = arr.size(), res = 1;
     vector<int> lis;
+    for (auto &e: arr)  {
 
-    for (int i = 0; i < n; i++) {
-
-        int pos = lower_bound(lis.begin(), lis.end(), arr[i]) - lis.begin();
-        if (pos < lis.size()) lis[pos] = arr[i];
-        else lis.push_back(arr[i]);
-
+        auto itr = lower_bound(lis.begin(), lis.end(), e);
+        if (itr == lis.end()) lis.push_back(e);
+        else *itr = e;
     }
-    return lis.size();
+    cout << lis.size();
 }
 
 int main() {

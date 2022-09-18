@@ -1,34 +1,39 @@
-// given arr[n] collect all number in increasing order
+// given arr[n] collect all number in increasing order going left to right
 // return minimum number of rounds required
 
 #include <bits/stdc++.h>
 using namespace std;
+//================================================================
 
-int solve() {
-    
+void testcase() {
+
     int n;
     cin >> n;
-    int arr[n], idx[n + 1];
+    vector<int> a(n), idx(n + 1);
     for (int i = 0; i < n; i++) {
-        cin >> arr[i];
-        idx[--arr[i]] = i;
+        cin >> a[i];
+        idx[a[i]] = i;
     }
-    idx[n] = n;
     int res = 1;
-    for (int i = 0; i < n; i++) res += idx[arr[i]] > idx[arr[i] + 1];
-    // for every arr[i] : idx[arr[i]] > idx[arr[i] + 1]
-    // 1 round has to be made before collecting arr[i]
+    for (int i = 1; i < n; i++) {
 
-    return res;
-}
-int main() {
-    ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    cout.setf(ios::fixed);
-
-    int T = 1;
-    // cin >> T;
-    while (T--) {
-        cout << solve();
+        if (idx[i + 1] < idx[i]) res++; // new round required
     }
-    return 0;
+    cout << res;
+}
+
+int32_t main() {
+	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+	#ifndef ONLINE_JUDGE
+	  freopen("input.txt", "r", stdin);
+	  freopen("output.txt", "w", stdout);
+	#endif
+
+	int T = 1;
+	// cin >> T;
+	while (T--) {
+		testcase();
+		cout << '\n';
+	}
+	return 0;
 }

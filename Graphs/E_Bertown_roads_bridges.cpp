@@ -12,8 +12,8 @@ void dfs(int u, int par = -1, int d = 0) {
     dep[u] = low[u] = d;
     for (auto &v: adj[u]) {
 
-        if (low[v] != -1 && v == par) continue;
-        if (low[v] == -1) { // span edge
+        if (v == par) continue;
+        if (dep[v] == -1) { // span edge
             dfs(v, u, d + 1);
             unidirectional_edges.push_back({u + 1, v + 1});
         }
