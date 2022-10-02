@@ -5,7 +5,7 @@ using namespace std;
 vector<vector<int>> adj, up;
 vector<int> dep, par, res;
 
-void dfs(int u) {
+void dfs1(int u) {
 
     up[u][0] = par[u];
     for (int i = 1; i < 20; i++) {
@@ -18,7 +18,7 @@ void dfs(int u) {
         if (v == par[u]) continue;
         par[v] = u;
         dep[v] = dep[u] + 1;
-        dfs(v);
+        dfs1(v);
     }
 }
 
@@ -76,7 +76,7 @@ void testcase() {
     }
     par.assign(n, - 1);
     dep.assign(n, 0);
-    dfs(0);
+    dfs1(0);
 
     res.assign(n, 0);
     while (q--) {

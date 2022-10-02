@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const int INF = 1e9 + 5;
+const int INF = 1e18;
 //================================================================
 
 void testcase() {

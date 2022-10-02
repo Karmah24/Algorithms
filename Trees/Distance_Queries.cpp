@@ -3,11 +3,11 @@ using namespace std;
 //================================================================
 
 vector<vector<int>> adj, up;
-vector<int> dep;
+vector<int> par, dep;
 
-void dfs(int u, int par) {
+void build(int u) {
 
-    up[u][0] = par;
+    up[u][0] = par[u];
     for (int i = 1; i < 20; i++) {
 
         int v = up[u][i - 1];
@@ -15,20 +15,20 @@ void dfs(int u, int par) {
     }
     for (auto &v: adj[u]) {
 
-        if (v == par) continue;
+        if (v == par[u]) continue;
+        par[v] = u;
         dep[v] = dep[u] + 1;
-        dfs(v, u);
+        build(v);
     }
 }
 
 int lift(int u, int k) {
 
-    int ances = u;
-    for (int i = 0; i < 20 && ances != -1; i++) {
+    for (int i = 0; i < 20 && u != -1; i++) {
 
-        if (k & (1 << i)) ances = up[ances][i];
+        if (k & (1 << i)) u = up[u][i];
     }
-    return ances;
+    return u;
 }
 
 int lca(int u, int v) {
@@ -64,7 +64,7 @@ void testcase() {
        adj[v].push_back(u);
     }
     dep.assign(n, 0);
-    dfs(0, -1);
+    build(0);
     while (q--) {
 
         int u, v;

@@ -10,9 +10,6 @@
 // third - path through its par (grand par of current node)
 // best of these 3 will be the partial res for node i;
 
-// Solution 2
-// farthest node from a given node can only be 1 of the 2 endpoints of the diameter
-
 #include <bits/stdc++.h>
 using namespace std;
 //================================================================
@@ -88,6 +85,9 @@ void solve1() {
 
     for (auto &e: res) cout << e << " ";
 }
+
+// Solution 2
+// farthest node from a given node can only be 1 of the 2 endpoints of the diameter
 
 void dfs3(int u, vector<int> &dep) {
 
