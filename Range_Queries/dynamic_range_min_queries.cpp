@@ -2,41 +2,41 @@
 using namespace std;
 
 #define ln '\n'
-const int N = (1 << 19) - 1;
+const int N = (1 << 20) - 1; // array size upto 5e5
 //=======================
 
 int sgt[N];
 
-int build(int idx, int lo, int hi, int arr[]) {
+int build(int idx, int l, int r, int arr[]) {
 
-    if (lo == hi) return sgt[idx] = arr[lo];
+    if (l == r) return sgt[idx] = arr[l];
 
-    int mid = (lo + hi) / 2;
-    int left = build(idx * 2 + 1, lo, mid, arr);
-    int right = build(idx * 2 + 2, mid + 1, hi, arr);
+    int mid = (l + r) / 2;
+    int left = build(idx * 2 + 1, l, mid, arr);
+    int right = build(idx * 2 + 2, mid + 1, r, arr);
 
     return sgt[idx] = min(left, right);
 }
-int getMin(int idx, int sl, int sh, int lo, int hi) {
+int getMin(int idx, int sl, int sr, int ql, int qr) {
 
-    if (lo <= sl && sh <= hi) return sgt[idx];
-    if (sh < lo || hi < sl) return INT_MAX;
+    if (ql <= sl && sr <= qr) return sgt[idx];
+    if (sr < ql || qr < sl) return INT_MAX;
 
-    int mid = (sl + sh) / 2;
-    int left = getMin(idx * 2 + 1, sl, mid, lo, hi);
-    int right = getMin(idx * 2 + 2, mid + 1, sh, lo, hi);
+    int mid = (sl + sr) / 2;
+    int left = getMin(idx * 2 + 1, sl, mid, ql, qr);
+    int right = getMin(idx * 2 + 2, mid + 1, sr, ql, qr);
 
     return min(left, right);
 }
-void update(int idx, int sl, int sh, int k, int u) {
+void update(int idx, int sl, int sr, int k, int u) {
 
-    if (sl == sh) {
+    if (sl == sr) {
         sgt[idx] = u;
         return;
     }
-    int mid = (sl + sh) / 2;
+    int mid = (sl + sr) / 2;
     if (k <= mid) update(idx * 2 + 1, sl, mid, k, u);
-    else update(idx * 2 + 2, mid + 1, sh, k, u);
+    else update(idx * 2 + 2, mid + 1, sr, k, u);
     
     sgt[idx] = min(sgt[idx * 2 + 1], sgt[idx * 2 + 2]);
 }

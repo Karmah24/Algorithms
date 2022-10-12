@@ -7,7 +7,7 @@ string a, b;
 int d, k;
 int dp[12][12][2][2];
 
-int cal(int pos, int cnt, bool fl, bool fr) {
+int solve(int pos, int cnt, bool fl, bool fr) {
 
     if (cnt < 0) return 0;
     if (pos == b.size()) return cnt == 0;
@@ -21,7 +21,7 @@ int cal(int pos, int cnt, bool fl, bool fr) {
 
     for (int i = l; i <= r; i++) {
 
-        res += cal(pos + 1, i == d ? cnt - 1 : cnt, fl || i > l, fr || i < r);
+        res += solve(pos + 1, i == d ? cnt - 1 : cnt, fl || i > l, fr || i < r);
     }
     return res;
 }
@@ -29,9 +29,10 @@ int cal(int pos, int cnt, bool fl, bool fr) {
 void testcase() {
 
     cin >> a >> b >> d >> k;
+    // 0 padding smaller number
     a.insert(a.begin(), b.size() - a.size(), '0');
     memset(dp, -1, sizeof(dp));
-    cout << cal(0, k, false, false);
+    cout << solve(0, k, false, false);
 }
 
 signed main() {

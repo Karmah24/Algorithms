@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
-const int INF = 1e18;
 //================================================================
 
 int dp[105][10005];
@@ -47,9 +45,12 @@ void testcase() {
 
     memset(dp, -1, sizeof(dp));
     bool ok = solve(n - 1, s);
-    if (ok) cout << "Yes\n";
-    else cout << "No";
-    if (!ok) return;
+    if (!ok) {
+
+        cout << "No";
+        return;
+    }
+    cout << "Yes\n";
     string path = "";
     get_path(n - 1, s, path);
     reverse(path.begin(), path.end());
