@@ -6,10 +6,6 @@ const ll MOD = 1e9 + 7;
 ll add(ll x, ll y) { return ((x % MOD) + (y % MOD)) % MOD; }
 //================================================================
 
-int lcm(int a, int b) {
-    return (a * b) / gcd(a, b);
-}
-
 void testcase() {
 
     int n;
