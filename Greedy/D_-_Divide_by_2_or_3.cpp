@@ -11,27 +11,27 @@ void testcase() {
     cin >> n;
     vector<int> a(n);
     for (int i = 0; i < n; i++) cin >> a[i];
-    sort(a.begin(), a.end());
 
     int g = a[0];
     for (int i = 1; i < n; i++) g = gcd(g, a[i]);
-    int res = 0, f = 1;
-    for (int i = 0; i < n && f; i++) {
+    for (int i = 0; i < n; i++) a[i] /= g;
+    int res = 0, ok = 1;
+    for (int i = 0; i < n && ok; i++) {
 
-        while (a[i] != g && f) {
+        while (a[i] != 1 && ok) {
 
-            if (a[i] % 3 == 0 && a[i] >= g * 3) {
+            if (a[i] % 3 == 0) {
                 a[i] /= 3;
                 res++;
             }
-            else if (a[i] % 2 == 0 && a[i] >= g * 2) {
+            else if (a[i] % 2 == 0) {
                 a[i] /= 2;
                 res++;
             }
-            else f = 0;
+            else ok = 0;
         }
     }
-    if (!f) res = -1;
+    if (!ok) res = -1;
     cout << res;
 }
 

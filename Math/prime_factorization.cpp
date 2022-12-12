@@ -5,29 +5,6 @@ const int N = 1000;
 int spf[N];
 vector<pair<int, int>> factors[N];
 
-// single query
-vector<pair<int, int>> factorize(int n) {
-
-    vector<pair<int, int>> factors;
-    int cnt = 0;
-    while (n % 2 == 0) {
-        cnt++;
-        n /= 2;
-    }
-    if (cnt > 0) factors.push_back({2, cnt});
-    for (int i = 3; i * i <= n; i += 2) {
-        if (n % i != 0) continue;
-        cnt = 0;
-        while (n % i == 0) {
-            cnt++;
-            n /= i;
-        }
-        factors.push_back({i, cnt});
-    }
-    if (n != 1) factors.push_back({n, 1});
-    return factors;
-}
-
 // multiple queries
 
 void sieve() {
@@ -54,6 +31,30 @@ vector<pair<int, int>> sieve_factorize(int n) {
     }
     return factors[n];
 }
+
+// single query
+vector<pair<int, int>> factorize(int n) {
+
+    vector<pair<int, int>> factors;
+    int cnt = 0;
+    while (n % 2 == 0) {
+        cnt++;
+        n /= 2;
+    }
+    if (cnt > 0) factors.push_back({2, cnt});
+    for (int i = 3; i * i <= n; i += 2) {
+        if (n % i != 0) continue;
+        cnt = 0;
+        while (n % i == 0) {
+            cnt++;
+            n /= i;
+        }
+        factors.push_back({i, cnt});
+    }
+    if (n != 1) factors.push_back({n, 1});
+    return factors;
+}
+
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     freopen("../input.txt", "r", stdin);
