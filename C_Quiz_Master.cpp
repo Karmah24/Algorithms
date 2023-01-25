@@ -9,7 +9,12 @@ const int MOD = 1e9 + 7;
 
 void testcase() {
 
+    int n, m;
+    cin >> n >> m;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
 
+    for (int i = 0; i < n; i++) 
 }
 
 int32_t main() {

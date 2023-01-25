@@ -9,7 +9,26 @@ const int MOD = 1e9 + 7;
 
 void testcase() {
 
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
 
+    if (n == 1) {
+        cout << "YES";
+        return;
+    }
+    int xx = 0;
+    for (auto &e: a) xx ^= e;
+    if (n & 1) {
+        for (int i = 0; i < n - 1; i++) {
+            int yy = a[i] ^ xx;
+            a[i] ^= yy;
+            a[i + 1] ^= yy;
+        }
+        cout << (a.back() == xx ? "YES" : "NO");
+    }
+    else cout << (xx == 0 ? "YES" : "NO");
 }
 
 int32_t main() {

@@ -10,19 +10,16 @@ int solve() {
     for (int i = 0; i < n; i++) cin >> a[i];
 
     priority_queue<int, vector<int>, greater<int>> pq;
-    int health = 0, cnt = 0;
+    int health = 0;
     for (int i = 0; i < n; i++) {
-        if (health + a[i] < 0) {
-            if (pq.empty() || a[i] < pq.top()) continue;
-            health -= pq.top();
-            pq.pop();
-            cnt--;
-        }
         health += a[i];
         pq.push(a[i]);
-        cnt++;
+        if (health < 0) {
+            health -= pq.top();
+            pq.pop();
+        }
     }
-    return cnt;
+    return pq.size();
 }
 signed main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);

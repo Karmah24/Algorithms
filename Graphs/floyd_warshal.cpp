@@ -23,8 +23,8 @@ int main() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
 
-                if (dis[i][k] == LLONG_MAX || dis[j][k] == LLONG_MAX) continue;
-                dis[i][j] = dis[j][i] = min(dis[i][j], dis[i][k] + dis[j][k]);
+                if (dis[i][k] == LLONG_MAX || dis[k][j] == LLONG_MAX) continue;
+                dis[i][j] = dis[j][i] = min(dis[i][j], dis[i][k] + dis[k][j]);
             }
         }
     }

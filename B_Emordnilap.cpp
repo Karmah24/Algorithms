@@ -7,9 +7,18 @@ const int MOD = 1e9 + 7;
 // const int MOD = 998244353;
 //================================================================
 
+int fact[N];
+
 void testcase() {
 
+    int n;
+    cin >> n;
 
+    int res = fact[n] * (n - 1);
+    res %= MOD;
+    res *= n;
+    res %= MOD;
+    cout << res;
 }
 
 int32_t main() {
@@ -19,6 +28,11 @@ int32_t main() {
 		// freopen("output.txt", "w", stdout);
 	#endif
 
+    fact[0] = 1;
+    for (int i = 1; i < N; i++) {
+        fact[i] = i * fact[i - 1];
+        fact[i] %= MOD;
+    }
 	int T = 1;
 	cin >> T;
 	while (T--) {

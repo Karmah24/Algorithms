@@ -9,7 +9,18 @@ const int MOD = 1e9 + 7;
 
 void testcase() {
 
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
 
+    sort(a.begin(), a.end());
+    int res = a.front() > 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] > i) continue;
+        if (i == n - 1 || a[i + 1] > i + 1) res++;
+    }
+    cout << res;
 }
 
 int32_t main() {

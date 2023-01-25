@@ -14,7 +14,6 @@ int build(int idx, int l, int r, int arr[]) {
     int mid = (l + r) / 2;
     int left = build(idx * 2 + 1, l, mid, arr);
     int right = build(idx * 2 + 2, mid + 1, r, arr);
-
     return sgt[idx] = min(left, right);
 }
 int getMin(int idx, int sl, int sr, int ql, int qr) {
@@ -25,7 +24,6 @@ int getMin(int idx, int sl, int sr, int ql, int qr) {
     int mid = (sl + sr) / 2;
     int left = getMin(idx * 2 + 1, sl, mid, ql, qr);
     int right = getMin(idx * 2 + 2, mid + 1, sr, ql, qr);
-
     return min(left, right);
 }
 void update(int idx, int sl, int sr, int k, int u) {

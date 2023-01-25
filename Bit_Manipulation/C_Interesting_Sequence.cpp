@@ -9,7 +9,26 @@ const int MOD = 1e9 + 7;
 
 void testcase() {
 
+    int n, x;
+    cin >> n >> x;
 
+    int m = 0;
+    int a, b, prv_a;
+    bool ok = 1;
+    for (int i = 63; i >= 0; i--) {
+        a = (n >> i) & 1LL, b = (x >> i) & 1LL;
+        if (a == b) {
+            m |= a * (1LL << i);
+            prv_a = a;
+            continue;
+        }
+        if ((x >> i) * (1LL << i) != x || b > a || prv_a == 1) ok = 0;
+        else {
+            m |= (1LL << (i + 1));
+        }
+        break;
+    }
+    cout << (ok && m >= n ? m : -1);
 }
 
 int32_t main() {

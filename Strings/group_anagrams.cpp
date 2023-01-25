@@ -30,7 +30,7 @@ int main() {
     while (getline(cin, token, ' ')) strs.push_back(token);
     Solution obj;
     for (auto e: obj.groupAnagrams(strs)) {
-            for (auto s: e) cout << s << ' ';
-            cout << endl;
+        for (auto s: e) cout << s << ' ';
+        cout << endl;
     }
 }

@@ -19,16 +19,15 @@ public:
 			curr = curr->arr[x];
 		}
 	}
+	int dfs(Node *u, int x) {
+
+		if (x < 0) return 0;
+		if (!u->arr[0]) return dfs(u->arr[1], x - 1);
+		if (!u->arr[1]) return dfs(u->arr[0], x - 1);
+
+		return min(dfs(u->arr[0], x - 1), dfs(u->arr[1], x - 1)) | (1 << x);
+	}
 };
-
-int dfs(Node *node, int x) {
-
-	if (x < 0) return 0;
-	if (!node->arr[0]) return dfs(node->arr[1], x - 1);
-	if (!node->arr[1]) return dfs(node->arr[0], x - 1);
-
-	return min(dfs(node->arr[0], x - 1), dfs(node->arr[1], x - 1)) | (1 << x);
-}
 
 void testcase() {
 
@@ -41,7 +40,7 @@ void testcase() {
 	Trie trie;
 	for (auto &e: a) trie.insert(e);
 
-	cout << dfs(trie.root, 30);
+	cout << trie.dfs(trie.root, 30);
 }
 
 int32_t main() {

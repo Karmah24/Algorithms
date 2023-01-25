@@ -1,6 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+struct Node {
+	Node* arr[2] = {nullptr};
+	int cnt[2] = {0};
+};
+
+class Trie {
+public:
+	Node *root = nullptr;
+	void insert(int n) {
+		if (!root) root = new Node();
+		Node *u = root;
+		for (int i = 30; i >= 0; i--) {
+			int x = (n >> i) & 1;
+			u->cnt[x]++;
+			if (!u->arr[x]) u->arr[x] = new Node();
+			u = u->arr[x];
+		}
+	}
+	void remove(int n) {
+		Node *u = root;
+		for (int i = 30; i >= 0 && u; i--) {
+			int x = (n >> i) & 1;
+			if (--u->cnt[x] == 0) u->arr[x] = nullptr;
+			u = u->arr[x];
+		}
+	}
+	int dfs(int n, int i) {
+		int res = 0;
+        Node *u = root;
+        for (int i = 30; i >= 0; i--) {
+            int x = (n >> i) & 1;
+            if (u->arr[1 - x]) {
+                res |= (1 << i);
+                u = u->arr[1 - x];
+            }
+            else u = u->arr[x];
+        }
+        return res;
+	}
+};
+
 struct TrieNode {
     unordered_map<char, TrieNode*> mp;
     bool isEnd = false;
